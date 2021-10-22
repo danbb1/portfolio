@@ -1,0 +1,13 @@
+@custom-media --md (min-width: 768px);
+@custom-media --lg(min-width: 1024px);
+
+:root {
+    --primary: #2c2726;
+    --secondary: #5e8646;
+}
+
+%flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

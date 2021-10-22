@@ -1,13 +1,33 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-extraneous-dependencies */
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `Dan Bridges`,
+    description: `Web developer portfolio for Dan Bridges.`,
+    author: `Dan Bridges`,
+    siteUrl: `https://danbridges.co.uk`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [`.md`, `.mdx`],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {
+        postCssPlugins: [
+          require("postcss-import")(),
+          require("postcss-nesting")(),
+          require("postcss-extend-rule")(),
+          require("postcss-custom-media")(),
+          require("autoprefixer")(),
+        ],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
