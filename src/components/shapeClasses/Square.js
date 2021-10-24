@@ -1,8 +1,17 @@
 import Shape from "./Shape"
 
 class Square extends Shape {
-  constructor(x, y, ctx, radius, strokeStyle, velocityX, velocityY) {
-    super(x, y, ctx, strokeStyle, velocityX, velocityY)
+  constructor(
+    x,
+    y,
+    ctx,
+    radius,
+    strokeStyle,
+    velocityX,
+    velocityY,
+    rotationalVel
+  ) {
+    super(x, y, ctx, strokeStyle, velocityX, velocityY, rotationalVel)
     this.radius = radius
   }
 

@@ -38,6 +38,8 @@ const Canvas = ({ size }) => {
   const randomVelY = () =>
     (Math.floor(Math.random() * 3) + 1) / 2 *
     initialDirections[Math.round(Math.random())]
+  const randomRotation = () =>
+    Math.random() * 0.08 * initialDirections[Math.round(Math.random())]
 
   const draw = (context, shapes) => {
     context.clearRect(0, 0, size?.width, size?.height)
@@ -73,7 +75,8 @@ const Canvas = ({ size }) => {
           radius,
           strokeColors[Math.floor(Math.random() * 3)],
           randomVelX(),
-          randomVelY()
+          randomVelY(),
+          randomRotation()
         ),
         new Square(
           randomX(),
@@ -82,7 +85,8 @@ const Canvas = ({ size }) => {
           radius,
           strokeColors[Math.floor(Math.random() * 3)],
           randomVelX(),
-          randomVelY()
+          randomVelY(),
+          randomRotation()
         )
       )
     }
