@@ -22,8 +22,6 @@ const Canvas = ({ size }) => {
   }
 
   const radius = 20
-  const velocityX = 0.5
-  const velocityY = 1
   const initialDirections = {
     0: 1,
     1: -1,
