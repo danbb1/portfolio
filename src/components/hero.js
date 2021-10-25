@@ -11,6 +11,7 @@ import {
 import Circle from "./shapeClasses/Circle"
 import Triangle from "./shapeClasses/Triangle"
 import Square from "./shapeClasses/Square"
+import useWindowSize from "../utils/useWindowSize"
 
 const Canvas = ({ size }) => {
   const canvasRef = useRef()
@@ -114,19 +115,15 @@ const Canvas = ({ size }) => {
 }
 
 const Hero = () => {
-  const [size, setSize] = useState()
-
   const ref = useRef()
 
-  useEffect(() => {
-    const newSize = ref.current?.getBoundingClientRect() || null
+  const { elSize: canvasSize } = useWindowSize(ref)
 
-    setSize({ width: newSize.width, height: newSize.height })
-  }, [])
+  console.log(canvasSize)
 
   return (
     <div ref={ref} className={container}>
-      <Canvas size={size} />
+      <Canvas size={canvasSize} />
       <div className={canvasMask} />
       <div className={headingContainer}>
         <h1 className={heading}>

@@ -8,6 +8,16 @@ module.exports = {
     siteUrl: `https://danbridges.co.uk`,
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-bundle-stats`,
+      options: {
+        compare: true,
+        outDir: "../artifacts",
+        stats: {
+          context: "./src",
+        },
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
