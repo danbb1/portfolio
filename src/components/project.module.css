@@ -109,6 +109,10 @@
     }
 }
 
+.arrow-wrapper {
+    @extend %flex-center;
+}
+
 .close-drawer-button {
     position: absolute;
     top: 0.5rem;

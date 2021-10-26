@@ -1,6 +1,5 @@
 .vjs-wrapper {
     min-width: 250px;
-    max-width: 500px;
     margin: 0 auto;
 
     & > div {
@@ -13,8 +12,8 @@
 }
 
 .portrait {
-    width: calc(404px / 2);
+    width: calc(404px / 1.5);
     min-width: auto;
-    max-width: auto;
-    height: calc(718px / 2);
+    max-width: 100%;
+    height: calc(718px / 1.5);
 }

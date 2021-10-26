@@ -3,6 +3,15 @@ heading: "Windows 98 Portfolio"
 image: "../../images/onetoone.jpg"
 link: "https://6131f93942ef12ef262af453--competent-lichterman-be1c5a.netlify.app/"
 description: "Convert this portfolio  to Windows 98 desktop"
-inclusions: ["Static site", "Hosted on Netlify", "Built with Gatsby and Tailwind"]
+inclusions: ["Static site", "Hosted on Netlify", "Built with Gatsby, ReduxJs and CSS Modules"]
 status: "Just for Fun"
 ---
+# Windows 98 Profile
+
+The idea behind this project was explore state managment using Redux. As I had content available from my existing portfolio I thought that would be suitable to reuse and reimagine my portfolio if it was stored on a retro Windows Desktop.
+
+The Redux store manages an array of open programs which are mapped onto a <Program /\> component displayed in the desktop. Each program window is resizeable, draggable, minimizable and maximizable. 
+
+The content displayed within the program window is managed within a 'file system' JSON that acts as a linked list. Each node tracks its parent node and any child nodes, if they exist. If the node is a file, the node points to this file in the file structure.
+
+Using Gatsby's data layer, the file system is queried using GraphQL and rendered.

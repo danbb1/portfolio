@@ -15,6 +15,7 @@ const useVideoPlayer = ({ source }) => {
     autoplay: false,
     fluid: true,
     controls: true,
+    playbackRates: [1.5, 1.0],
   }
 
   useEffect(() => {

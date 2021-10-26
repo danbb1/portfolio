@@ -21,11 +21,19 @@ import {
 const Projects = React.forwardRef((props, ref) => {
   const { projects } = props
 
+  const isProduction = status => status === "Production"
+  const isJustForFun = status => status === "Just for Fun"
+
   const sortedProjects = projects.sort((a, b) => {
-    if (a.node.frontmatter.status === "Production") return -1
-    if (b.node.frontmatter.status === "Production") return 1
-    if (a.node.frontmatter.status === "Just for Fun") return 1
-    if (a.node.frontmatter.status === b.node.frontmatter.status) return 0
+    const aStatus = a.node.frontmatter.status
+    const bStatus = b.node.frontmatter.status
+
+    if (isProduction(aStatus)) return -1
+    if (!isProduction(aStatus) && isProduction(bStatus)) return 1
+    if (isJustForFun(aStatus) && !isJustForFun(bStatus)) return 1
+    if (!isJustForFun(aStatus) && isJustForFun(bStatus)) return -1
+
+    return 0
   })
 
   return (

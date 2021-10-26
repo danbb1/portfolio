@@ -2,7 +2,17 @@
 heading: "Recipe App"
 image: "../../images/onetoone.jpg"
 link: "https://6131f93942ef12ef262af453--competent-lichterman-be1c5a.netlify.app/"
-description: "Brochure website for online tutor."
-inclusions: ["Static site", "Hosted on Netlify", "Built with Gatsby and Tailwind"]
+description: "Simple CRUD app for creating recipes."
+inclusions: ["Static site with dynamic functionality", "Hosted on Netlify", "Built with Gatsby and Material UI", "Apollo Client", "FaunaDB", "Auth0"]
 status: "Just for Fun"
 ---
+# Recipe App
+
+This is a simple CRUD app built using Gatsby as the front end, Apollo Client for interacting with remote and local data via GraphQL and Netlify Functions to interact with a remote Fauna database.
+
+To set up a local development environment required using Docker to set up a local Fauna cluster and interacting with this cluster via fauna-shell, a cli tool.
+
+User authentication is implemented using Auth0, with user details stored in a User collection in Fauna.
+
+Users must be logged in to create recipes and only recipes can only be deleted/updated by their creator. Users can favorite recipes.
+

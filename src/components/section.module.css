@@ -2,7 +2,7 @@
 
 .section {
     padding: 3rem 2rem;
-    @media screen and (--md) {
+    @media screen and (--lg) {
         padding: 2rem 5rem;
     }
 }

@@ -1,14 +1,25 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
+import { AiOutlineArrowLeft } from "react-icons/ai"
 
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 
+import { projectWrapper, homeLink } from "./project.module.css"
+
 const Project = ({ data }) => (
   <Layout>
     <SEO title={data.mdx.frontmatter.heading} />
-    <MDXRenderer>{data.mdx.body}</MDXRenderer>
+    <div className={projectWrapper}>
+      <div>
+        <Link to="/" className={homeLink}>
+          <AiOutlineArrowLeft />
+          Back Home
+        </Link>
+        <MDXRenderer>{data.mdx.body}</MDXRenderer>
+      </div>
+    </div>
   </Layout>
 )
 
