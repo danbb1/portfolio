@@ -7,7 +7,7 @@
     flex-direction: column;
 
     @media screen and (--md) {
-        height: 50vh;
+        height: 75vh;
         min-height: 400px;  
         align-items: flex-start;
     }
@@ -28,15 +28,25 @@
     background-color: rgba(46, 49, 49, 0.8);
 }
 
-button {
+.canvas-button {
+    display: flex;
     border: 0.2rem solid white;
     margin-top: 1rem;
     background-color: transparent;
     color: #ffffff;
 
+    & > svg {
+        margin: 1px 0 0 5px;
+        animation: bounce 2s infinite ease-in-out;
+    }
+
     &:hover {
         background-color: #ffffff;
         color: var(--primary);
+
+        & > svg {
+            animation: bounce-hard 1s infinite linear;
+        }
     }
 }
 
@@ -63,22 +73,14 @@ button {
     }
 }
 
-.shape {
-    position: absolute;
-    width: 4rem;
-    height: 4rem;
-    
-    & > * {
-        &.red {
-            stroke: #D64933;
-        }
-        &.blue {
-            stroke: #99E1D9;
-        }
-        &.yellow {
-            stroke: #D7F75B;
-        }
-        fill: none;
-        stroke-width: 0.5rem;
-    }
+@keyframes bounce {
+    0%, 100% { transform: translateY(2px); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes bounce-hard {
+    0%, 100% { transform: translateY(2px); }
+    20% { transform: translateY(-4px); }
+    40% { transform: translateY(2px); }
+    80% { transform: translateY(-2px); }
 }

@@ -1,0 +1,8 @@
+@import "../style/helpers";
+
+.section {
+    padding: 3rem 2rem;
+    @media screen and (--md) {
+        padding: 2rem 5rem;
+    }
+}

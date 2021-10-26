@@ -1,6 +1,9 @@
-import React, { useState, useRef, useEffect } from "react"
+import React, { useRef, useEffect } from "react"
+import { AiOutlineArrowDown } from "react-icons/ai"
+import scrollToElement from "scroll-to-element"
 
 import {
+  canvasButton,
   canvas as canvasStyle,
   canvasMask,
   container,
@@ -34,10 +37,10 @@ const Canvas = ({ size }) => {
   const randomY = () =>
     Math.floor(Math.random() * (size?.height - radius - radius) + radius)
   const randomVelX = () =>
-    (Math.floor(Math.random() * 3) + 1) / 2 *
+    ((Math.floor(Math.random() * 3) + 1) / 2) *
     initialDirections[Math.round(Math.random())]
   const randomVelY = () =>
-    (Math.floor(Math.random() * 3) + 1) / 2 *
+    ((Math.floor(Math.random() * 3) + 1) / 2) *
     initialDirections[Math.round(Math.random())]
   const randomRotation = () =>
     Math.random() * 0.08 * initialDirections[Math.round(Math.random())]
@@ -114,12 +117,10 @@ const Canvas = ({ size }) => {
   )
 }
 
-const Hero = () => {
+const Hero = ({ projectsRef }) => {
   const ref = useRef()
 
   const { elSize: canvasSize } = useWindowSize(ref)
-
-  console.log(canvasSize)
 
   return (
     <div ref={ref} className={container}>
@@ -131,7 +132,18 @@ const Hero = () => {
           <span>I'm Dan Bridges.</span>
           <span>A web developer.</span>
         </h1>
-        <button type="button">See For Yourself</button>
+        <button
+          className={canvasButton}
+          type="button"
+          onClick={() =>
+            scrollToElement(projectsRef, {
+              ease: "linear",
+              duration: 1000,
+            })
+          }
+        >
+          <span>See For Yourself</span> <AiOutlineArrowDown />
+        </button>
       </div>
     </div>
   )

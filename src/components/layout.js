@@ -1,35 +1,39 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
-
-import * as React from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
 
 import "modern-normalize"
 import "@fontsource/open-sans"
 
-import "./layout.module.css"
+import Hero from "./hero"
 
-const Layout = ({ children }) => (
-  <>
-    <div>
-      <main>{children}</main>
-      <footer
-        style={{
-          marginTop: `2rem`,
-        }}
-      >
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.com">Gatsby</a>
-      </footer>
-    </div>
-  </>
-)
+import { mainWrapper } from "./layout.module.css"
+
+const Layout = ({ children, projectsRef, index }) => {
+  const [projectsElRef, setProjectsElRef] = useState()
+
+  useEffect(() => {
+    if (!projectsRef) return
+    setProjectsElRef(projectsRef.current)
+  }, [projectsRef])
+
+  return (
+    <>
+      <div>
+        {index && <Hero projectsRef={projectsElRef && projectsElRef} />}
+        <main className={mainWrapper}>{children}</main>
+        <footer
+          style={{
+            marginTop: `2rem`,
+          }}
+        >
+          © {new Date().getFullYear()}, Built with
+          {` `}
+          <a href="https://www.gatsbyjs.com">Gatsby</a>
+        </footer>
+      </div>
+    </>
+  )
+}
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

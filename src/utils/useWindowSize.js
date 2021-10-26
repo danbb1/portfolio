@@ -5,8 +5,8 @@ const useWindowSize = ref => {
   const windowGlobal = typeof window !== "undefined"
 
   const [windowSize, setWindowSize] = useState({
-    width: windowGlobal ? window.innerWidth : undefined,
-    height: windowGlobal ? window.innerHeight : undefined,
+    windowWidth: windowGlobal ? window.innerWidth : undefined,
+    windowHeight: windowGlobal ? window.innerHeight : undefined,
   })
   const [elSize, setElSize] = useState()
 

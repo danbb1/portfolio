@@ -1,0 +1,20 @@
+.vjs-wrapper {
+    min-width: 250px;
+    max-width: 500px;
+    margin: 0 auto;
+
+    & > div {
+        & > button {
+            top: 50% !important;
+            left: 50% !important;
+            transform: translateX(-1.5em) translateY(calc(-1.63332em / 2));
+        } 
+    } 
+}
+
+.portrait {
+    width: calc(404px / 2);
+    min-width: auto;
+    max-width: auto;
+    height: calc(718px / 2);
+}

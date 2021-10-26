@@ -1,0 +1,47 @@
+@import "../style/helpers.css";
+
+.headshot {
+    overflow: hidden;
+    border-radius: 100%;
+}
+
+.headshot-wrapper {
+    @extend %flex-center;
+
+    @media screen and (--lg) {
+        width: 33.33333%
+    }
+}
+
+.intro-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (--md) {
+        flex-direction: row;
+
+        & > *:first-child {
+            width: 66.6666666%;
+            padding-right: 1rem;
+        }
+    }
+}
+
+.projects-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+
+    @media screen and (--md) {
+        flex-direction: row;
+    }
+}
+
+.projects-heading {
+    margin: 0;
+    margin-bottom: 3rem;
+    font-size: 4rem;
+    line-height: 1;
+    text-align: center;
+}

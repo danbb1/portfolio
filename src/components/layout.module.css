@@ -18,3 +18,30 @@ button {
         outline: 5px auto -webkit-focus-ring-color;
     }
 }
+
+a, a:visited {
+    position: relative;
+    color: inherit;
+    font-style: italic;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    &:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        border-bottom: 1px solid white;
+        content: "";
+        transition: all 0.5s ease-in-out;
+    }
+
+    &:hover:after {
+        width: 100%;
+    }
+}
+
+.main-wrapper {
+    max-width: 1536px;
+    margin: 0 auto;
+}
