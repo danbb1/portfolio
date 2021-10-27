@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react"
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
 import { AiOutlineFilePdf } from "react-icons/ai"
+import PropTypes from "prop-types"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -127,3 +128,34 @@ export const query = graphql`
     }
   }
 `
+
+const frontmatterShape = {
+  heading: PropTypes.string,
+  description: PropTypes.string,
+  inclusions: PropTypes.arrayOf(PropTypes.string),
+  link: PropTypes.string,
+  image: PropTypes.shape({}).isRequired,
+}
+
+Projects.propTypes = {
+  projects: PropTypes.arrayOf(
+    PropTypes.shape({
+      node: PropTypes.shape({
+        body: PropTypes.string.isRequired,
+        frontmatter: PropTypes.shape(frontmatterShape),
+      }),
+    })
+  ).isRequired,
+}
+
+IndexPage.propTypes = {
+  data: PropTypes.shape({
+    allMdx: PropTypes.shape({
+      edges: PropTypes.arrayOf(PropTypes.shape({})),
+    }),
+  }),
+}
+
+IndexPage.defaultProps = {
+  data: {},
+}

@@ -2,8 +2,12 @@
 import React, { useRef, useEffect, useState } from "react"
 import videojs from "video.js"
 import "video.js/dist/video-js.css"
+import PropTypes from "prop-types"
 
-import { vjsWrapper, portrait as portraitStyle } from "./videoJSPlayer.module.css"
+import {
+  vjsWrapper,
+  portrait as portraitStyle,
+} from "./videoJSPlayer.module.css"
 
 const useVideoPlayer = ({ source }) => {
   const [player, setPlayer] = useState(null)
@@ -48,3 +52,12 @@ const VideoJSPlayer = ({ portrait, source }) => {
 }
 
 export default VideoJSPlayer
+
+VideoJSPlayer.propTypes = {
+  portrait: PropTypes.bool,
+  source: PropTypes.string.isRequired,
+}
+
+VideoJSPlayer.defaultProps = {
+  portrait: false,
+}

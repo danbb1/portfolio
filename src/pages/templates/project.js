@@ -2,6 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import { AiOutlineArrowLeft } from "react-icons/ai"
+import PropTypes from "prop-types"
 
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
@@ -44,3 +45,14 @@ export const query = graphql`
     }
   }
 `
+
+Project.propTypes = {
+  data: PropTypes.shape({
+    mdx: PropTypes.shape({
+      frontmatter: PropTypes.shape({
+        heading: PropTypes.string,
+      }),
+      body: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+}

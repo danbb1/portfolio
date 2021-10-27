@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react"
 import { AiOutlineArrowDown } from "react-icons/ai"
 import scrollToElement from "scroll-to-element"
+import PropTypes from "prop-types"
 
 import {
   canvasButton,
@@ -129,7 +130,7 @@ const Hero = ({ projectsRef }) => {
       <div className={headingContainer}>
         <h1 className={heading}>
           Hello.
-          <span>I'm Dan Bridges.</span>
+          <span>I&apos;m Dan Bridges.</span>
           <span>A web developer.</span>
         </h1>
         <button
@@ -150,3 +151,25 @@ const Hero = ({ projectsRef }) => {
 }
 
 export default Hero
+
+Canvas.propTypes = {
+  size: PropTypes.shape({
+    height: PropTypes.number,
+    width: PropTypes.number,
+  }),
+}
+
+Canvas.defaultProps = {
+  size: {},
+}
+
+Hero.propTypes = {
+  projectsRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+}
+
+Hero.defaultProps = {
+  projectsRef: undefined,
+}

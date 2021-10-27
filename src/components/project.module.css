@@ -162,6 +162,9 @@
     }
 
     @media screen and (--md) {
+        padding: 2rem 3rem;
+        text-align: left;
+
         & > ul {
             display: block;
         }

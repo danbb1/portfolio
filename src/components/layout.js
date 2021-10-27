@@ -37,6 +37,16 @@ const Layout = ({ children, projectsRef, index }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  projectsRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+  index: PropTypes.bool,
+}
+
+Layout.defaultProps = {
+  index: false,
+  projectsRef: undefined,
 }
 
 export default Layout

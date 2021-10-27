@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { AiOutlineArrowLeft } from "react-icons/ai"
 import { Link } from "gatsby"
+import PropTypes from "prop-types"
 
 import {
   arrowWrapper,
@@ -92,3 +93,25 @@ const Project = ({ children, frontmatter }) => {
 }
 
 export default Project
+
+const frontmatterShape = {
+  heading: PropTypes.string,
+  description: PropTypes.string,
+  inclusions: PropTypes.arrayOf(PropTypes.string),
+  link: PropTypes.string,
+}
+
+ProjectStatus.propTypes = {
+  status: PropTypes.string.isRequired,
+}
+
+Drawer.propTypes = {
+  frontmatter: PropTypes.shape(frontmatterShape).isRequired,
+  viewProject: PropTypes.bool.isRequired,
+  setViewProject: PropTypes.func.isRequired,
+}
+
+Project.propTypes = {
+  children: PropTypes.node.isRequired,
+  frontmatter: PropTypes.shape(frontmatterShape).isRequired,
+}
