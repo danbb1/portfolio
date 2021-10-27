@@ -55,8 +55,15 @@
     background-color: rgba(46, 49, 49, 0.7);
     text-align: center;
 
+    & > a {
+        overflow: hidden;
+        width: 30ch;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
     & > h3 {
-        margin: 0;
+        margin: 0 0 0.25rem;
         font-size: 1.5rem;
         line-height: 1;
 
@@ -64,6 +71,10 @@
             font-size: 3rem;
         }
     }
+}
+
+.arrow-wrapper {
+    @extend %flex-center;
 }
 
 .drawer {
@@ -109,27 +120,64 @@
     }
 }
 
-.arrow-wrapper {
-    @extend %flex-center;
-}
-
 .close-drawer-button {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
-    padding: 0.5rem;
+    padding: 0 0.25rem 0.25rem 0.25rem;
     border: none;
+    border: 2px solid var(--secondary);
     margin: 0;
     background-color: var(--secondary);
     color: #ffffff;
     font-size: 1.5rem;
     font-weight: bold;
+
+    &:hover {
+        background-color: #ffffff;
+        color: var(--secondary);
+    }
 }
 
 .drawer-content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
     padding: 1rem 0.5rem;
     margin-left: 1.5rem;
     color: var(--primary);
+
+    & > span {
+        font-size: 1.25rem;
+        font-weight: bold;
+    }
+
+    & > p {
+        margin-top: 0.5rem;
+    }
+
+
+    & > ul {
+        display: none;
+    }
+
+    @media screen and (--md) {
+        & > ul {
+            display: block;
+        }
+    }
+}
+
+.case-study-link {
+    display: inline-block;
+    width: max-content;
+    padding-right: 0.25rem;
+    margin: auto auto 0 auto;
+    font-weight: bold;
+
+    &:after {
+        border-bottom-color: var(--primary) !important;
+    }
 }
 
 

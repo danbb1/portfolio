@@ -1,23 +1,23 @@
 @import "../../style/helpers.css";
 
 .project-wrapper {
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-
-  & > div:first-of-type {
-    max-width: 80ch;
+    max-width: 1024px;
+    padding: 2rem 1rem;
     margin: 0 auto;
-  }
+
+    & > div:first-of-type {
+        max-width: 80ch;
+        margin: 0 auto;
+    }
 }
 
 .home-link {
-  display: flex;
-  width: max-content;
-  padding-right: 0.25rem;
+    display: flex;
+    width: max-content;
+    padding-right: 0.25rem;
 
-  & > svg {
-  margin: 0.25rem 0.25rem 0 0;
-}
+    & > svg {
+        margin: 0.25rem 0.25rem 0 0;
+    }
 }
 

@@ -39,7 +39,7 @@ class Shape {
       this.x + this.velocityX < 0
     ) {
       this.velocityX = -this.velocityX
-      this.velocityX *= 0.85
+      // this.velocityX *= 0.85
     }
 
     if (
@@ -47,7 +47,7 @@ class Shape {
       this.y + this.velocityY < 0
     ) {
       this.velocityY = -this.velocityY
-      this.velocityY *= 0.85
+      // this.velocityY *= 0.85
     }
   }
 }
