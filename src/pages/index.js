@@ -12,6 +12,7 @@ import Section from "../components/section"
 import CV from "../data/cv.pdf"
 
 import {
+  cvLink,
   headshot,
   introContainer,
   headshotWrapper,
@@ -78,7 +79,7 @@ const IndexPage = ({ data }) => {
             possimus hic officia tempora cum nobis iste veritatis, totam
             voluptates.
           </p>
-          <a href={CV}>
+          <a className={cvLink} href={CV}>
             <AiOutlineFilePdf />
             CV.pdf
           </a>

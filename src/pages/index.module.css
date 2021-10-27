@@ -7,9 +7,11 @@
 
 .headshot-wrapper {
     @extend %flex-center;
+    margin-bottom: 2rem;
 
     @media screen and (--lg) {
-        width: 33.33333%
+        width: 33.33333%;
+        margin-bottom: 0;
     }
 }
 
@@ -44,4 +46,15 @@
     font-size: 4rem;
     line-height: 1;
     text-align: center;
+}
+
+.cv-link {
+    display: block;
+    width: max-content;
+    padding-right: 0.25rem;
+    margin-top: 1rem;
+
+    & > svg {
+        margin-right: 0.25rem;
+    }
 }
