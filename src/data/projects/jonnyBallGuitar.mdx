@@ -19,8 +19,17 @@ Jonny Ball is a guitar teacher who moved to teaching online during the pandemic.
 
 The brief was to create a personal website to attract new students. Visitors should have the ability to enquire about lessons and buy gift vouchers.
 
-The Gift Vouchers are managed using Stripe and are sourced at build time. Users can personalise their gift voucher and once purchase is completed, a Stripe webhook fires to a Netlify function to automatically deliver the personalised voucher to the recipient.
+Formik with Yup field validation is used for form management and Netlify's built in form submissions handle any submitted forms, filtering out spam submissions using a bot honeypot. Tying in Formik with custom components, such as React Select was the main challenge of setting up the forms.
+
+The Gift Vouchers are handled by Stripe Checkout. The available vouchers 
+are created and managed in Stripe before they are sourced at build time. 
+
+On the site, users can personalise their gift voucher before a Netlify function creates the checkout session and redirects the user to Stripe's checkout page. Once purchase is completed, a Stripe webhook fires to another Netlify function to automatically deliver the personalised voucher to the recipient. A demo of the personalisation and checkout process can be seen in the video below.
 
 <VideoJSPlayer source={GiftVoucherVideo} />
+
+A Netlify function also handles sign ups to a MailChimp mailing list.
+
+A few months after launch the site seems to be performing well. Jonny has received several enquiries through the site and sold some gift vouchers.
 
 > "Working with Dan has been an absolute pleasure. Dan’s a consummate professional, with a wealth of knowledge and expertise. Working with Dan meant that I was able to design my website from scratch, exactly how I wanted it, alongside Dan’s guidance and suggestions to create a site that was completely unique and bespoke. He accommodated my every request punctually and I wouldn’t hesitate in recommending him to anyone. Look no further than Dan Bridges!" - *Jonny Ball*

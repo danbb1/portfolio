@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { AiOutlineGithub, AiOutlineMail } from "react-icons/ai"
 import PropTypes from "prop-types"
 
 import "modern-normalize"
@@ -21,14 +22,19 @@ const Layout = ({ children, projectsRef, index }) => {
       <div>
         {index && <Hero projectsRef={projectsElRef && projectsElRef} />}
         <main className={mainWrapper}>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.com">Gatsby</a>
+        <footer>
+          <span>
+            <AiOutlineGithub /> danbb1
+          </span>
+          <span>
+            <AiOutlineMail />
+            hello@danbridges.co.uk
+          </span>
+          <span>
+            © {new Date().getFullYear()}, Built with
+            {` `}
+            <a href="https://www.gatsbyjs.com">Gatsby</a>
+          </span>
         </footer>
       </div>
     </>

@@ -8,11 +8,21 @@ status: "Just for Fun"
 ---
 # Recipe App
 
-This is a simple CRUD app built using Gatsby as the front end, Apollo Client for interacting with remote and local data via GraphQL and Netlify Functions to interact with a remote Fauna database.
+This is a simple CRUD app built using Gatsby as the front end, Apollo Client for managing remote and local data via GraphQL and Netlify Functions to interact with a remote Fauna database.
 
-To set up a local development environment required using Docker to set up a local Fauna cluster and interacting with this cluster via fauna-shell, a cli tool.
+Fauna was chosen as the database for its ease in getting started and built in GraphQL api as the primary aim of this project was to learn about front end data management rather than setting up a database. To get started with Fauna was as easy as creating a database, creating an api key and uploading a GraphQL schema, which Fauna used to automatically create collections and some initial queries and mutations. 
 
-User authentication is implemented using Auth0, with user details stored in a User collection in Fauna.
+To set up a local development environment required using Docker to create a local Fauna cluster and interacting with this cluster via fauna-shell, a cli tool.
 
-Users must be logged in to create recipes and only recipes can only be deleted/updated by their creator. Users can favorite recipes.
+User authentication is implemented using Auth0, with user details stored in a User collection in Fauna. On login, a Netlify function checks whether the logged in user already exists in the database, if they do not, a new entry is created. On page load, the app performs a silent authentication check. 
+
+Users must be logged in to create recipes and recipes can only be deleted/updated by their creator. Users can favorite recipes.
+
+Recipes are created using a Formik form. Getting Formik and Material UI components to play nicely together was challenege, as was integrating the Field Array for fields with multiple values whoese number can be increased/decreased by the user. Once the recipe is completed, an Apollo mutation updates simulataneously updates the local cache and the remote data.
+
+Editing recipes uses the same form with the recipe's current values passed to the form as initial values. Once editing is complete, another Apollo mutation applies the change to both the local cache and the remote data.
+
+Material UI was used to build to UI.
+
+Currently the app is in a bare bones state. To improve I would integrate paginated queries for recipes to prevent overfetching and tedious wait times for users. I would also integrate better sorting and searching to group recipes in a helpful way.
 
