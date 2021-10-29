@@ -27,7 +27,7 @@ const Project = ({ data }) => (
 export default Project
 
 export const query = graphql`
-  query ($heading: String!) {
+  query ($heading: String) {
     mdx(frontmatter: { heading: { eq: $heading } }) {
       body
       frontmatter {

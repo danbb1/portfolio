@@ -29,10 +29,14 @@ exports.createPages = async function ({ actions, graphql }) {
       .replace(/ /g, "-")
       .replace(/[^\w-]+/g, "")
 
+    console.log("Createing page", path)
+
     actions.createPage({
       path: `/projects/${path}`,
       component: require.resolve("./src/pages/templates/project.js"),
       context: { heading: edge.node.frontmatter.heading },
     })
+
+    console.log("Success")
   })
 }
