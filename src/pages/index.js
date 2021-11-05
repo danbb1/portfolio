@@ -23,26 +23,11 @@ import {
 const Projects = React.forwardRef((props, ref) => {
   const { projects } = props
 
-  const isProduction = status => status === "Production"
-  const isJustForFun = status => status === "Just for Fun"
-
-  const sortedProjects = projects.sort((a, b) => {
-    const aStatus = a.node.frontmatter.status
-    const bStatus = b.node.frontmatter.status
-
-    if (isProduction(aStatus)) return -1
-    if (!isProduction(aStatus) && isProduction(bStatus)) return 1
-    if (isJustForFun(aStatus) && !isJustForFun(bStatus)) return 1
-    if (!isJustForFun(aStatus) && isJustForFun(bStatus)) return -1
-
-    return 0
-  })
-
   return (
     <div ref={ref}>
       <h2 className={projectsHeading}>Projects</h2>
       <div className={projectsWrapper}>
-        {sortedProjects.map(project => (
+        {projects.map(project => (
           <Project
             key={project.node.frontmatter.heading}
             frontmatter={project.node.frontmatter}
@@ -66,6 +51,14 @@ const IndexPage = ({ data }) => {
   const ref = useRef()
 
   useEffect(() => {}, [ref])
+
+  const projects = data
+    ? [
+        ...data.Production.edges,
+        ...data.Development.edges,
+        ...data.JustForFun.edges,
+      ]
+    : null
 
   return (
     <Layout projectsRef={ref} index>
@@ -98,7 +91,7 @@ const IndexPage = ({ data }) => {
           />
         </div>
       </Section>
-      <Projects ref={ref} projects={data?.allMdx.edges} />
+      <Projects ref={ref} projects={projects} />
     </Layout>
   )
 }
@@ -106,24 +99,47 @@ const IndexPage = ({ data }) => {
 export default IndexPage
 
 export const query = graphql`
+  fragment projectInfo on Mdx {
+    body
+    frontmatter {
+      status
+      description
+      inclusions
+      link
+      heading
+      title
+      image {
+        childImageSharp {
+          gatsbyImageData(quality: 95)
+        }
+      }
+    }
+  }
   query {
-    allMdx {
+    Production: allMdx(
+      filter: { frontmatter: { status: { eq: "Production" } } }
+    ) {
       edges {
         node {
-          body
-          frontmatter {
-            status
-            description
-            inclusions
-            link
-            heading
-            title
-            image {
-              childImageSharp {
-                gatsbyImageData(quality: 95)
-              }
-            }
-          }
+          ...projectInfo
+        }
+      }
+    }
+    Development: allMdx(
+      filter: { frontmatter: { status: { eq: "Development" } } }
+    ) {
+      edges {
+        node {
+          ...projectInfo
+        }
+      }
+    }
+    JustForFun: allMdx(
+      filter: { frontmatter: { status: { eq: "Just for Fun" } } }
+    ) {
+      edges {
+        node {
+          ...projectInfo
         }
       }
     }
@@ -151,7 +167,13 @@ Projects.propTypes = {
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
-    allMdx: PropTypes.shape({
+    Production: PropTypes.shape({
+      edges: PropTypes.arrayOf(PropTypes.shape({})),
+    }),
+    Development: PropTypes.shape({
+      edges: PropTypes.arrayOf(PropTypes.shape({})),
+    }),
+    JustForFun: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.shape({})),
     }),
   }),
