@@ -1,20 +1,22 @@
 exports.createPages = async function ({ actions, graphql }) {
   const { data } = await graphql(`
     query {
-      allMdx {
+      allFile(filter: { relativeDirectory: { eq: "projects" } }) {
         edges {
           node {
-            body
-            frontmatter {
-              status
-              description
-              inclusions
-              link
-              heading
-              image {
-                childImageSharp {
-                  gatsbyImageData(quality: 95)
+            childMdx {
+              body
+              frontmatter {
+                description
+                heading
+                status
+                image {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
                 }
+                link
+                inclusions
               }
             }
           }
@@ -23,8 +25,8 @@ exports.createPages = async function ({ actions, graphql }) {
     }
   `)
 
-  data.allMdx.edges.forEach(edge => {
-    const path = edge.node.frontmatter.heading
+  data.allFile.edges.forEach(edge => {
+    const path = edge.node.childMdx.frontmatter.heading
       .toLowerCase()
       .replace(/ /g, "-")
       .replace(/[^\w-]+/g, "")
@@ -34,7 +36,7 @@ exports.createPages = async function ({ actions, graphql }) {
     actions.createPage({
       path: `/projects/${path}`,
       component: require.resolve("./src/pages/templates/project.js"),
-      context: { heading: edge.node.frontmatter.heading },
+      context: { heading: edge.node.childMdx.frontmatter.heading },
     })
 
     console.log("Success")

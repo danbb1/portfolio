@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react"
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { AiOutlineFilePdf } from "react-icons/ai"
 import PropTypes from "prop-types"
 
@@ -12,7 +12,7 @@ import Section from "../components/section"
 import CV from "../data/cv.pdf"
 
 import {
-  cvLink,
+  link,
   headshot,
   introContainer,
   headshotWrapper,
@@ -24,7 +24,7 @@ const Projects = React.forwardRef((props, ref) => {
   const { projects } = props
 
   return (
-    <div ref={ref}>
+    <div ref={ref} id={props.id}>
       <h2 className={projectsHeading}>Projects</h2>
       <div className={projectsWrapper}>
         {projects.map(project => (
@@ -66,13 +66,11 @@ const IndexPage = ({ data }) => {
       <Section className={introContainer}>
         <div>
           <p>
-            I am a self taught web developer from Stockport. Lorem ipsum dolor
-            sit amet consectetur adipisicing elit. Minus labore, magnam
-            necessitatibus porro quis repudiandae odit sapiente, iure fuga magni
-            possimus hic officia tempora cum nobis iste veritatis, totam
-            voluptates.
+            I am a self taught web developer from Stockport skilled in HTML,
+            JavaScript, CSS, React, Gatsby, Serverless Functions.
           </p>
-          <a className={cvLink} href={CV}>
+          <Link className={link} to="/about/">More About Me</Link>
+          <a className={link} href={CV}>
             <AiOutlineFilePdf />
             CV.pdf
           </a>
@@ -91,7 +89,7 @@ const IndexPage = ({ data }) => {
           />
         </div>
       </Section>
-      <Projects ref={ref} projects={projects} />
+      <Projects ref={ref} projects={projects} id="projects-anchor" />
     </Layout>
   )
 }
