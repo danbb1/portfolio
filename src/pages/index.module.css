@@ -31,6 +31,10 @@
     }
 }
 
+.intro-text {
+    margin-bottom: 1rem;
+}
+
 .projects-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -49,12 +53,15 @@
 }
 
 .link {
-    display: block;
+    display: inline-block;
     width: max-content;
     padding-right: 0.25rem;
-    margin-top: 1rem;
 
     & > svg {
         margin-right: 0.25rem;
+    }
+
+    &:not(:last-of-type) {
+        margin-right: 1rem;
     }
 }

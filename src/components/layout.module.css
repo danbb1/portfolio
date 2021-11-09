@@ -32,7 +32,7 @@ a, a:visited {
 
     &:after {
         position: absolute;
-        bottom: 0;
+        bottom: -0.25rem;
         left: 0;
         width: 0;
         border-bottom: 1px solid white;
@@ -48,4 +48,33 @@ a, a:visited {
 .main-wrapper {
     max-width: 1536px;
     margin: 0 auto;
+}
+
+footer {
+    @extend %flex-center;
+    flex-direction: column;
+    padding: 3rem 2rem;
+
+    & > * {
+        &:not(:last-child) {
+            margin-bottom: 0.5rem;
+        }
+    }
+    
+}
+
+.links-wrapper {
+    display: flex;
+
+    & > *:not(:last-child) {
+        margin-right: 1rem;
+    }
+}
+
+.icon-link{
+    @extend %flex-center; 
+
+    & > *:first-child {
+        margin-right: 0.25rem;
+    }
 }

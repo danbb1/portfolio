@@ -7,7 +7,7 @@ import "@fontsource/open-sans"
 
 import Hero from "./hero"
 
-import { mainWrapper } from "./layout.module.css"
+import { iconLink, linksWrapper, mainWrapper } from "./layout.module.css"
 
 const Layout = ({ children, projectsRef, index }) => {
   const [projectsElRef, setProjectsElRef] = useState()
@@ -23,13 +23,16 @@ const Layout = ({ children, projectsRef, index }) => {
         {index && <Hero projectsRef={projectsElRef && projectsElRef} />}
         <main className={mainWrapper}>{children}</main>
         <footer>
-          <span>
-            <AiOutlineGithub /> danbb1
-          </span>
-          <span>
-            <AiOutlineMail />
-            hello@danbridges.co.uk
-          </span>
+          <div className={linksWrapper}>
+            <a className={iconLink} href="https://www.github.com/danbb1/">
+              <AiOutlineGithub /> @danbb1
+            </a>
+            <a href="mailto:hello@danbridges.co.uk" className={iconLink}>
+              <AiOutlineMail />
+              hello@danbridges.co.uk
+            </a>
+          </div>
+
           <span>
             © {new Date().getFullYear()}, Built with
             {` `}

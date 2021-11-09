@@ -15,6 +15,7 @@ import {
   link,
   headshot,
   introContainer,
+  introText,
   headshotWrapper,
   projectsHeading,
   projectsWrapper,
@@ -65,11 +66,13 @@ const IndexPage = ({ data }) => {
       <Seo title="Home" />
       <Section className={introContainer}>
         <div>
-          <p>
+          <p className={introText}>
             I am a self taught web developer from Stockport skilled in HTML,
             JavaScript, CSS, React, Gatsby, Serverless Functions.
           </p>
-          <Link className={link} to="/about/">More About Me</Link>
+          <Link className={link} to="/about/">
+            More About Me
+          </Link>
           <a className={link} href={CV}>
             <AiOutlineFilePdf />
             CV.pdf
