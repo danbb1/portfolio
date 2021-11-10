@@ -1,0 +1,33 @@
+---
+heading: "Recipe App"
+image: "../../images/recipeapp.jpg"
+link: "https://modest-curie-b92a14.netlify.app/"
+description: "Simple CRUD app for creating recipes."
+inclusions: ["Static site with dynamic functionality", "Hosted on Netlify", "Built with Gatsby and Material UI", "Apollo Client", "FaunaDB", "Auth0"]
+status: "Just for Fun"
+---
+# Recipe App
+
+[https://modest-curie-b92a14.netlify.app/](https://modest-curie-b92a14.netlify.app/)
+
+This is a simple CRUD app built using Gatsby as the front end, Apollo Client for managing remote and local data via GraphQL and Netlify Functions to interact with a remote Fauna database.
+
+Fauna was chosen as the database for its ease in getting started and built in GraphQL api as the primary aim of this project was to learn about front end data management rather than setting up a database. To get started with Fauna was as easy as:
+- Creating a database
+- Creating api keys and roles - a read only and unrestricted
+- Uploading a GraphQL schema, which Fauna used to automatically create collections and some initial queries and mutations
+- Setting up Auth0 as the authentication provider to exchange JWTs.
+
+To set up a local development environment required using Docker to create a local Fauna cluster and interacting with this cluster via fauna-shell, a cli tool, and VS Code's REST client extension.
+
+User authentication is implemented using Auth0, with some user details, such as authored recipes and favourite recipes, stored in a User collection in Fauna. On login, a Netlify function checks whether the logged in user already exists in the database, if they do not, a new entry is created. On page load, the app performs a silent authentication check to see if the user has previosuly logged by looking for a logged in flag in browser localstorage.
+
+Users must be logged in to create recipes and recipes can only be deleted/updated by their creator. Users can favorite recipes.
+
+These actions are authenticated by a JWT signed by Auth0 and accepted by Fauna, which is requested retrieved on login by a Netlify function and stored in session storage. On initial page load and if no user is logged in, recipes are retrieved using a read-only Fauna key, which is replaced in Apollo's query headers with the JWT once a user is authenticated.
+
+Recipes are created using a Formik form. Getting Formik and Material UI components to play nicely together was challenege, as was integrating the Field Array for fields with multiple values whoese number can be increased/decreased by the user. Once the recipe is completed, an Apollo mutation updates simulataneously updates the local cache and the remote data.
+
+Editing recipes uses the same form with the recipe's current values passed to the form as initial values. Once editing is complete, another Apollo mutation applies the change to both the local cache and the remote data.
+
+Material UI was used to build to UI.

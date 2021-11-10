@@ -16,9 +16,18 @@
 }
 
 .home-link {
+    position: sticky;
+    z-index: 10;
+    top: 1rem;
+    left: 1rem;
     display: flex;
     width: max-content;
-    padding-right: 0.25rem;
+    padding: 0.25rem 0.75rem 0.25rem 0.5rem;
+    background-color: var(--secondary);
+
+    &:after {
+        display: none;
+    }
 
     & > svg {
         margin: 0.25rem 0.25rem 0 0;

@@ -15,6 +15,7 @@ import {
   production as productionStyle,
   project as projectStyle,
   projectContent,
+  projectLink,
   projectStatus,
 } from "./project.module.css"
 
@@ -79,8 +80,8 @@ const Project = ({ children, frontmatter }) => {
       <div className={projectContent}>
         <ProjectStatus status={frontmatter.status} />
         <h3>{frontmatter.heading}</h3>
-        <a href={frontmatter.link} target="_blank" rel="noreferrer noopener">
-          {frontmatter.link}
+        <a className={projectLink} href={frontmatter.link} target="_blank" rel="noreferrer noopener">
+          <span>{frontmatter.link}</span>
         </a>
         <Drawer
           frontmatter={frontmatter}
