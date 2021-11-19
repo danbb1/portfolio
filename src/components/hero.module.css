@@ -1,21 +1,23 @@
 @import "../style/helpers.css";
 
 .container {
-    @extend %flex-center;
     position: relative;
     height: 100vh;
-    flex-direction: column;
+    padding: 25vh 0 0 8vw;
 
     @media screen and (--md) {
-        height: 75vh;
-        min-height: 400px;  
-        align-items: flex-start;
+        height: auto;
+        padding: 15vh 0 15vh 5vw;
     }
 }
 
 .canvas {
     position: absolute;
     z-index: -10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
 
 .canvas-mask {
@@ -55,16 +57,9 @@
 
 .heading-container {
     @extend %flow;
+    display: inline-block;
     padding: 2rem 1rem 2rem;
     border-left: solid 1rem var(--secondary);
-
-    @media screen and (--md) {
-        margin-left: 3rem;
-    }
-
-    @media screen and (--lg) {
-        margin-left: 5rem;
-    }
 }
 
 .heading {
@@ -74,8 +69,8 @@
         display: block;
 
         &:after {
-            content: ".";
             color: var(--secondary);
+            content: ".";
         }
     }
 

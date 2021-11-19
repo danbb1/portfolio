@@ -14,13 +14,11 @@ const About = ({ data }) => (
     {console.log(data)}
     <SEO title="About" />
     <div className={projectWrapper}>
-      <div>
-        <Link to="/" className={homeLink}>
-          <AiOutlineArrowLeft />
-          Back Home
-        </Link>
-        <MDXRenderer>{data.file.childMdx.body}</MDXRenderer>
-      </div>
+      <Link to="/" className={homeLink}>
+        <AiOutlineArrowLeft />
+        Back Home
+      </Link>
+      <MDXRenderer>{data.file.childMdx.body}</MDXRenderer>
     </div>
   </Layout>
 )

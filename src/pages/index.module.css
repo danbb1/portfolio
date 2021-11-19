@@ -10,14 +10,14 @@
     position: relative;
     margin-bottom: 2rem;
     &:after {
-        content: "";
-        z-index: 1;
         position: absolute;
-        left: -1rem;
+        z-index: 1;
         top: -1rem;
-        bottom: 1rem;
         right: 1rem;
+        bottom: 1rem;
+        left: -1rem;
         border: solid 0.5rem var(--secondary);
+        content: "";
         /* border-radius: 100%; */
     }
 
