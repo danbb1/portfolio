@@ -129,9 +129,9 @@ const Hero = ({ projectsRef }) => {
       <div className={canvasMask} />
       <div className={headingContainer}>
         <h1 className={heading}>
-          Hello.
-          <span>I&apos;m Dan Bridges.</span>
-          <span>A web developer.</span>
+          <span>Hello</span>
+          <span>I&apos;m Dan Bridges</span>
+          <span>A web developer</span>
         </h1>
         <button
           className={canvasButton}

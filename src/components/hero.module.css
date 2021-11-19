@@ -31,7 +31,6 @@
 .canvas-button {
     display: flex;
     border: 0.2rem solid white;
-    margin-top: 1rem;
     background-color: transparent;
     color: #ffffff;
 
@@ -48,39 +47,51 @@
             animation: bounce-hard 1s infinite linear;
         }
     }
+
+    @media screen and (--md) {
+        font-size: var(--500);
+    }
 }
 
 .heading-container {
+    @extend %flow;
     padding: 2rem 1rem 2rem;
     border-left: solid 1rem var(--secondary);
 
     @media screen and (--md) {
+        margin-left: 3rem;
+    }
+
+    @media screen and (--lg) {
         margin-left: 5rem;
     }
 }
 
 .heading {
-    margin: 0;
-    line-height: 1.3;
+    font-size: var(--700);
 
     & > span {
         display: block;
+
+        &:after {
+            content: ".";
+            color: var(--secondary);
+        }
     }
 
     @media screen and (--md) {
-        font-size: 4rem;
-        line-height: 1.1;
+        font-size: var(--900);
     }
 }
 
 @keyframes bounce {
-    0%, 100% { transform: translateY(2px); }
-    50% { transform: translateY(-4px); }
+    0%, 100% { transform: translateY(6px); }
+    50% { transform: translateY(-2px); }
 }
 
 @keyframes bounce-hard {
-    0%, 100% { transform: translateY(2px); }
-    20% { transform: translateY(-4px); }
+    0%, 100% { transform: translateY(6px); }
+    20% { transform: translateY(-2px); }
     40% { transform: translateY(2px); }
     80% { transform: translateY(-2px); }
 }

@@ -1,17 +1,32 @@
 @import "../style/helpers.css";
 
 .headshot {
+    position: relative;
     overflow: hidden;
-    border-radius: 100%;
 }
 
 .headshot-wrapper {
     @extend %flex-center;
+    position: relative;
     margin-bottom: 2rem;
+    &:after {
+        content: "";
+        z-index: 1;
+        position: absolute;
+        left: -1rem;
+        top: -1rem;
+        bottom: 1rem;
+        right: 1rem;
+        border: solid 0.5rem var(--secondary);
+        /* border-radius: 100%; */
+    }
+
+    @media screen and (--lg) {
+        margin-bottom: 0
+    }
 
     @media screen and (--lg) {
         width: 33.33333%;
-        margin-bottom: 0;
     }
 }
 
@@ -21,18 +36,20 @@
     align-items: center;
     justify-content: space-between;
 
+    & > *:first-child {
+        @extend %flow;
+    }
+    
+
     @media screen and (--md) {
         flex-direction: row;
 
         & > *:first-child {
+            @extend %flow;
             width: 66.6666666%;
             padding-right: 1rem;
         }
     }
-}
-
-.intro-text {
-    margin-bottom: 1rem;
 }
 
 .projects-wrapper {

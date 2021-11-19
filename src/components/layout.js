@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react"
 import { AiOutlineGithub, AiOutlineMail } from "react-icons/ai"
 import PropTypes from "prop-types"
 
-import "modern-normalize"
-import "@fontsource/open-sans"
+import "../style/reset.css"
+import "@fontsource/ubuntu"
 
 import Hero from "./hero"
 

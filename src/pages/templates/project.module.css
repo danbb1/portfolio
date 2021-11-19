@@ -1,18 +1,11 @@
 @import "../../style/helpers.css";
 
 .project-wrapper {
-    max-width: 1024px;
+    @extend %flow;
+
+    max-width: 80ch;
     padding: 2rem 1rem;
     margin: 0 auto;
-
-    & > div:first-of-type {
-        max-width: 80ch;
-        margin: 0 auto;
-    }
-
-    & > div > * {
-        margin-bottom: 1rem;
-    }
 }
 
 .home-link {
@@ -32,9 +25,5 @@
     & > svg {
         margin: 0.25rem 0.25rem 0 0;
     }
-}
-
-li:not(:last-child) {
-    margin-bottom: 0.5rem;
 }
 

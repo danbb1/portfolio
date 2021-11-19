@@ -13,13 +13,11 @@ const Project = ({ data }) => (
   <Layout>
     <SEO title={data.mdx.frontmatter.heading} />
     <div className={projectWrapper}>
-      <div>
-        <Link to="/" className={homeLink}>
-          <AiOutlineArrowLeft />
-          Back Home
-        </Link>
-        <MDXRenderer>{data.mdx.body}</MDXRenderer>
-      </div>
+      <Link to="/" className={homeLink}>
+        <AiOutlineArrowLeft />
+        Back Home
+      </Link>
+      <MDXRenderer>{data.mdx.body}</MDXRenderer>
     </div>
   </Layout>
 )
