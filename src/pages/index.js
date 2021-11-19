@@ -16,7 +16,6 @@ import {
   headshot,
   introContainer,
   introText,
-  headshotWrapper,
   projectsHeading,
   projectsWrapper,
 } from "./index.module.css"
@@ -25,25 +24,23 @@ const Projects = React.forwardRef((props, ref) => {
   const { projects } = props
 
   return (
-    <div ref={ref} id={props.id}>
+    <div ref={ref} id={props.id} className={projectsWrapper}>
       <h2 className={projectsHeading}>Projects</h2>
-      <div className={projectsWrapper}>
-        {projects.map(project => (
-          <Project
-            key={project.node.frontmatter.heading}
-            frontmatter={project.node.frontmatter}
-          >
-            <GatsbyImage
-              image={getImage(project.node.frontmatter.image)}
-              layout="fullWidth"
-              quality={95}
-              placeholder="blurred"
-              formats={["AUTO", "WEBP", "AVIF"]}
-              alt="Dan Bridges web developer"
-            />
-          </Project>
-        ))}
-      </div>
+      {projects.map(project => (
+        <Project
+          key={project.node.frontmatter.heading}
+          frontmatter={project.node.frontmatter}
+        >
+          <GatsbyImage
+            image={getImage(project.node.frontmatter.image)}
+            layout="fullWidth"
+            quality={95}
+            placeholder="blurred"
+            formats={["AUTO", "WEBP", "AVIF"]}
+            alt="Dan Bridges web developer"
+          />
+        </Project>
+      ))}
     </div>
   )
 })
@@ -68,7 +65,7 @@ const IndexPage = ({ data }) => {
         <div>
           <p className={introText}>
             I am a self taught web developer from Stockport skilled in HTML,
-            JavaScript, CSS, React, Gatsby, Serverless Functions.
+            JavaScript, CSS, React, Gatsby, Serverless Functions. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos alias veniam hic, odio incidunt, ducimus unde ea enim saepe numquam rerum vitae suscipit? At voluptate odio ea inventore nam quibusdam.
           </p>
           <Link className={link} to="/about/">
             More About Me
@@ -78,19 +75,17 @@ const IndexPage = ({ data }) => {
             CV.pdf
           </a>
         </div>
-        <div className={headshotWrapper}>
-          <StaticImage
-            className={headshot}
-            src="../images/headshotbw.jpg"
-            width={300}
-            layout="constrained"
-            objectFit="scale-down"
-            quality={95}
-            placeholder="blurred"
-            formats={["AUTO", "WEBP", "AVIF"]}
-            alt="Dan Bridges web developer"
-          />
-        </div>
+        <StaticImage
+          className={headshot}
+          src="../images/headshotbw.jpg"
+          width={300}
+          layout="constrained"
+          objectFit="scale-down"
+          quality={95}
+          placeholder="blurred"
+          formats={["AUTO", "WEBP", "AVIF"]}
+          alt="Dan Bridges web developer"
+        />
       </Section>
       <Projects ref={ref} projects={projects} id="projects-anchor" />
     </Layout>

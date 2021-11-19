@@ -4,23 +4,6 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    border-bottom: 1px solid #ffffff;
-
-    &:first-of-type {
-        border-top: 1px solid #ffffff;
-    }
-
-    @media screen and (--lg) {
-        width: 50%;
-
-        &:nth-of-type(2) {
-            border-top: 1px solid #ffffff;
-        }
-
-        &:nth-of-type(odd) {
-            border-right: 1px solid #ffffff;
-        }
-    }
 }
 
 .project-status {
@@ -43,9 +26,8 @@
 }
 
 .drawer-content {
-    display: flex;
+    @extend %flow;
     height: 100%;
-    flex-direction: column;
     padding: 1rem 0.5rem;
     margin-left: 1.5rem;
 
@@ -54,16 +36,12 @@
         font-weight: bold;
     }
 
-    & > p {
-        margin-top: 0.5rem;
-    }
-
 
     & > ul {
         display: none;
     }
 
-    @media screen and (--md) {
+    @media screen and (--lg) {
         padding: 2rem 3rem;
         text-align: left;
 
@@ -87,11 +65,11 @@
     text-align: center;
 
     & > h3 {
-        /* margin: 0 0 0.25rem; */
-        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        font-size: var(--500);
 
         @media screen and (--md) {
-            font-size: 3rem;
+            font-size: var(--600);
         }
     }
 }
@@ -178,10 +156,10 @@
 }
 
 .case-study-link {
-    display: inline-block;
+    display: block;
     width: max-content;
-    padding-right: 0.25rem;
-    margin: auto auto 0 auto;
+    margin-right: auto;
+    margin-left: auto;
     font-weight: bold;
 }
 

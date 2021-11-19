@@ -2,14 +2,10 @@
 
 .headshot {
     position: relative;
-    overflow: hidden;
-}
-
-.headshot-wrapper {
-    @extend %flex-center;
-    position: relative;
-    margin-bottom: 2rem;
-    &:after {
+    overflow: visible !important;
+    margin-bottom: 1rem;
+    
+    &:before {
         position: absolute;
         z-index: 1;
         top: -1rem;
@@ -18,15 +14,40 @@
         left: -1rem;
         border: solid 0.5rem var(--secondary);
         content: "";
-        /* border-radius: 100%; */
+    }
+}
+
+
+.projects-wrapper {
+    & > * {
+        display: block;
     }
 
-    @media screen and (--lg) {
-        margin-bottom: 0
-    }
+    @media screen and (--md) {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
 
-    @media screen and (--lg) {
-        width: 33.33333%;
+        @supports (display: grid) {
+            & > * {
+                margin: 0;
+            }
+        }
+
+        & > *:first-child {
+            align-self: center;
+            padding: 0 10%;
+            grid-column: 1/13;
+            text-align: right;
+        }
+
+        & > *:nth-child(odd) {
+            grid-column: 1/7 !important;
+        }
+
+
+        & > *:nth-child(even) {
+            grid-column: 13/7 !important;
+        }
     }
 }
 
@@ -38,35 +59,36 @@
 
     & > *:first-child {
         @extend %flow;
+        max-width: 80ch;
+
+        @media screen and (--md) {
+            & > p {
+                font-size: var(--500);
+            }
+        }
+
+        
     }
     
 
-    @media screen and (--md) {
-        flex-direction: row;
-
-        & > *:first-child {
-            @extend %flow;
-            width: 66.6666666%;
-            padding-right: 1rem;
-        }
-    }
-}
-
-.projects-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-
-    @media screen and (--md) {
+    @media screen and (--lg) {
         flex-direction: row;
     }
 }
 
 .projects-heading {
-    margin: 0;
-    margin-bottom: 3rem;
-    font-size: 4rem;
-    line-height: 1;
+    font-size: var(--700);
     text-align: center;
+
+    @media screen and (--md) {
+        text-align: left;
+        font-size: var(--900);
+    }
+
+    &:after {
+        color: var(--secondary);
+        content: ".";
+    }
 }
 
 .link {
