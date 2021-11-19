@@ -25,7 +25,11 @@ const Projects = React.forwardRef((props, ref) => {
 
   return (
     <div ref={ref} id={props.id} className={projectsWrapper}>
-      <h2 className={projectsHeading}>Projects</h2>
+      
+      <div>
+        <h2 className={projectsHeading}>Projects</h2>
+        <p>Some of the the things I have built</p>
+        </div>
       {projects.map(project => (
         <Project
           key={project.node.frontmatter.heading}
