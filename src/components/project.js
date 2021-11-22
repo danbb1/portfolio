@@ -1,16 +1,11 @@
-import React, { useState } from "react"
-import { AiOutlineArrowLeft } from "react-icons/ai"
+import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 
+import useWindowSize from "../utils/useWindowSize"
+
 import {
-  arrowWrapper,
   caseStudyLink,
-  drawer,
-  drawerButton,
-  drawerContent,
-  closeDrawerButton,
-  opened,
   development as developmentStyle,
   production as productionStyle,
   project as projectStyle,
@@ -29,65 +24,55 @@ const ProjectStatus = ({ status }) => (
   </span>
 )
 
-const Drawer = ({ frontmatter, viewProject, setViewProject }) => (
-  <div className={`${drawer} ${viewProject ? `${opened}` : ""}`}>
-    <button
-      className={drawerButton}
-      type="button"
-      onClick={() => setViewProject(!viewProject)}
-    >
-      <div className={arrowWrapper}>
-        <AiOutlineArrowLeft />
-      </div>
-    </button>
-    <button
-      className={closeDrawerButton}
-      type="button"
-      onClick={() => setViewProject(false)}
-    >
-      x
-    </button>
-    <div className={drawerContent}>
-      <span>{frontmatter.heading}</span>
-      <p>{frontmatter.description}</p>
-      <>
-        <ul>
-          {frontmatter?.inclusions.map(inclusion => (
-            <li key={`${frontmatter.heading}-${inclusion}`}>{inclusion}</li>
-          ))}
-        </ul>
-      </>
+const Project = ({ children, frontmatter, index, isVisible }) => {
+  const [hasBeenVisible, setHasBeenVisible] = useState(false)
+  const translateXDistance = index % 2 ? 0 : `-100%`
+  const translateYDistance = Math.ceil(index / 2) * -100
 
-      <Link
-        className={caseStudyLink}
-        to={`/projects/${frontmatter.heading
-          .toLowerCase()
-          .replace(/ /g, "-")
-          .replace(/[^\w-]+/g, "")}/`}
-      >
-        View Case Study
-      </Link>
-    </div>
-  </div>
-)
+  const { windowSize } = useWindowSize()
 
-const Project = ({ children, frontmatter }) => {
-  const [viewProject, setViewProject] = useState(false)
+  useEffect(() => {
+    if (hasBeenVisible) return
+
+    if (isVisible) setHasBeenVisible(true)
+  }, [isVisible])
 
   return (
-    <div className={projectStyle}>
+    <div
+      style={{
+        transform: `translateX(${
+          windowSize.windowWidth >= 1024 && !isVisible && !hasBeenVisible
+            ? translateXDistance
+            : 0
+        }) translateY(${
+          windowSize.windowWidth >= 1024 && !isVisible && !hasBeenVisible
+            ? translateYDistance
+            : 0
+        }%)`,
+      }}
+      className={projectStyle}
+    >
       {children}
       <div className={projectContent}>
         <ProjectStatus status={frontmatter.status} />
         <h3>{frontmatter.heading}</h3>
-        <a className={projectLink} href={frontmatter.link} target="_blank" rel="noreferrer noopener">
+        <a
+          className={projectLink}
+          href={frontmatter.link}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
           <span>{frontmatter.link}</span>
         </a>
-        <Drawer
-          frontmatter={frontmatter}
-          viewProject={viewProject}
-          setViewProject={setViewProject}
-        />
+        <Link
+          className={caseStudyLink}
+          to={`/projects/${frontmatter.heading
+            .toLowerCase()
+            .replace(/ /g, "-")
+            .replace(/[^\w-]+/g, "")}/`}
+        >
+          View Case Study
+        </Link>
       </div>
     </div>
   )
@@ -104,12 +89,6 @@ const frontmatterShape = {
 
 ProjectStatus.propTypes = {
   status: PropTypes.string.isRequired,
-}
-
-Drawer.propTypes = {
-  frontmatter: PropTypes.shape(frontmatterShape).isRequired,
-  viewProject: PropTypes.bool.isRequired,
-  setViewProject: PropTypes.func.isRequired,
 }
 
 Project.propTypes = {

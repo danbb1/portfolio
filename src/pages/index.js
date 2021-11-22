@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react"
+import React, { useRef } from "react"
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql, Link } from "gatsby"
 import { AiOutlineFilePdf } from "react-icons/ai"
@@ -14,26 +14,34 @@ import CV from "../data/cv.pdf"
 import {
   link,
   headshot,
+  headshotWrapper,
   introContainer,
   introText,
   projectsHeading,
+  projectsSubheading,
   projectsWrapper,
+  projectsHeadingContainer,
+  introTextContainer,
 } from "./index.module.css"
+import useIsVisible from "../utils/useIsVisible"
 
 const Projects = React.forwardRef((props, ref) => {
-  const { projects } = props
+  const { projects, id, isVisible } = props
 
   return (
-    <div ref={ref} id={props.id} className={projectsWrapper}>
-      
-      <div>
+    <div ref={ref} id={id} className={projectsWrapper}>
+      <div className={projectsHeadingContainer}>
         <h2 className={projectsHeading}>Projects</h2>
-        <p>Some of the the things I have built</p>
-        </div>
-      {projects.map(project => (
+        <p className={projectsSubheading}>
+          Some of the the things I have built
+        </p>
+      </div>
+      {projects.map((project, index) => (
         <Project
           key={project.node.frontmatter.heading}
           frontmatter={project.node.frontmatter}
+          index={index}
+          isVisible={isVisible}
         >
           <GatsbyImage
             image={getImage(project.node.frontmatter.image)}
@@ -51,8 +59,7 @@ const Projects = React.forwardRef((props, ref) => {
 
 const IndexPage = ({ data }) => {
   const ref = useRef()
-
-  useEffect(() => {}, [ref])
+  const isVisible = useIsVisible(ref, "-200px")
 
   const projects = data
     ? [
@@ -63,13 +70,26 @@ const IndexPage = ({ data }) => {
     : null
 
   return (
-    <Layout projectsRef={ref} index>
+    <Layout index>
       <Seo title="Home" />
       <Section className={introContainer}>
-        <div>
+        <div className={headshotWrapper}>
+          <StaticImage
+            className={headshot}
+            src="../images/headshotbw.jpg"
+            width={300}
+            layout="constrained"
+            objectFit="scale-down"
+            quality={95}
+            placeholder="blurred"
+            formats={["AUTO", "WEBP", "AVIF"]}
+            alt="Dan Bridges web developer"
+          />
+        </div>
+        <div className={introTextContainer}>
           <p className={introText}>
-            I am a self taught web developer from Stockport skilled in HTML,
-            JavaScript, CSS, React, Gatsby, Serverless Functions. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos alias veniam hic, odio incidunt, ducimus unde ea enim saepe numquam rerum vitae suscipit? At voluptate odio ea inventore nam quibusdam.
+            I am a self taught web developer based in Stockport skilled in HTML,
+            CSS, JavaScript, React, Gatsby, Serverless Functions.
           </p>
           <Link className={link} to="/about/">
             More About Me
@@ -79,19 +99,13 @@ const IndexPage = ({ data }) => {
             CV.pdf
           </a>
         </div>
-        <StaticImage
-          className={headshot}
-          src="../images/headshotbw.jpg"
-          width={300}
-          layout="constrained"
-          objectFit="scale-down"
-          quality={95}
-          placeholder="blurred"
-          formats={["AUTO", "WEBP", "AVIF"]}
-          alt="Dan Bridges web developer"
-        />
       </Section>
-      <Projects ref={ref} projects={projects} id="projects-anchor" />
+      <Projects
+        projects={projects}
+        id="projects-anchor"
+        ref={ref}
+        isVisible={isVisible}
+      />
     </Layout>
   )
 }

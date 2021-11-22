@@ -1,24 +1,36 @@
 @import "../style/helpers.css";
 
-.headshot {
+.headshotWrapper {
     position: relative;
-    overflow: visible !important;
-    margin-bottom: 1rem;
-    
+    width: 15rem;
+    height: max-content;
+    margin-left: auto;
+    margin-right: auto;
+
     &:before {
         position: absolute;
         z-index: 1;
         top: -1rem;
-        right: 1rem;
-        bottom: 1rem;
         left: -1rem;
+        width: 100%;
+        height: 100%;
         border: solid 0.5rem var(--secondary);
         content: "";
     }
+
+    @media screen and (--md) {
+        margin-left: auto;
+        margin-right: 0;
+        transform: translateY(-25%);
+    }
+
+    @media screen and (--lg) {
+        width: max-content;
+    }
 }
 
-
 .projects-wrapper {
+
     & > * {
         display: block;
     }
@@ -38,63 +50,69 @@
             padding: 0.5rem 0 0.5rem 0.5rem;
             border-left: solid 0.5rem var(--secondary);
             margin-left: -0.5rem;
-            grid-column: 1/13;
             justify-self: center;
-            text-align: center;
+            z-index: 1;
+            background-color: var(--primary);
         }
 
         & > *:nth-child(odd) {
             grid-column: 1/7 !important;
         }
 
-
         & > *:nth-child(even) {
-            border-right: solid 1px white;
-            border-bottom: solid 1px white;
             grid-column: 13/7 !important;
-            
-        }
-
-        & > *:nth-child(2) {
-            border: solid white 1px;        
-        }
-
-        & > *:nth-child(odd):not(:first-child) {
-            border: solid white 1px;        
         }
     }
 }
 
 .intro-container {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    justify-content: space-between;
-
-    & > *:first-child {
-        @extend %flow;
-        max-width: 80ch;
-
-        @media screen and (--md) {
-            & > p {
-                font-size: var(--500);
+    padding: 2rem 3rem;
+    @media screen and (--md) {
+        @supports (display: flex) {
+            & > * {
+                margin: 0;
             }
         }
+        display: flex;
+        flex-direction: row-reverse;
+        padding-top: 0;
+        padding-bottom: 0;
 
-        
+        & > *:first-child {
+            margin: 0 auto;
+        }
+
+        & > *:nth-child(2) {
+            width: 50%;
+            margin-top: 5rem;
+            margin-bottom: 3rem;
+        }
     }
-    
+}
 
+.intro-text-container {
+    @extend %flow;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.intro-text {
     @media screen and (--lg) {
-        flex-direction: row;
+        font-size: var(--500);
     }
+}
+
+.projects-heading-container {
+    @extend %flow;
+    text-align: center;
+    margin-bottom: var(--flow-space);
 }
 
 .projects-heading {
     font-size: var(--700);
     text-align: center;
 
-    @media screen and (--md) {
+    @media screen and (--lg) {
         font-size: var(--900);
         text-align: left;
     }
@@ -103,6 +121,10 @@
         color: var(--secondary);
         content: ".";
     }
+}
+
+.projects-subheading {
+    text-align: center;
 }
 
 .link {

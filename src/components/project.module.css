@@ -4,6 +4,7 @@
     position: relative;
     overflow: hidden;
     width: 100%;
+    transition: all 0.5s ease-in-out 0.1s;
 }
 
 .project-status {
@@ -88,74 +89,10 @@
     }
 }
 
-.arrow-wrapper {
-    @extend %flex-center;
-}
-
-.drawer {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: var(--primary);
-    border-radius: 0.25rem 0 0 0.25rem;
-    color: #ffffff;
-    transform: translateX(calc(100% - 1.5rem));
-    transition: all 0.5s ease-in-out;
-
-    & > .drawer-button {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        overflow: hidden;
-        width: 1.5rem;
-        padding: 0;
-        border: none;
-        margin: 0;
-        background-color: var(--secondary);
-        border-radius: 0;
-        color: #ffffff;
-        & > div > svg {
-            animation: bounce 2s infinite ease-in-out;
-        }
-
-        &:hover {
-            & > div > svg {
-                animation: bounce-hard 1s infinite linear;
-            }
-        }
-    }
-    
-    &.opened{
-
-        transform: translateX(0);
-
-        & > button > .arrow-wrapper {
-            transform: rotate(180deg);
-        }
-    }
-}
-
-.close-drawer-button {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0 0.25rem 0.25rem 0.25rem;
-    border: none;
-    border: 2px solid var(--secondary);
-    margin: 0;
-    background-color: var(--secondary);
-    color: #ffffff;
-    font-size: 1.5rem;
-    font-weight: bold;
-
-    &:hover {
-        background-color: #ffffff;
-        color: var(--secondary);
-    }
-}
 
 .case-study-link {
+    position: absolute;
+    bottom: 2rem;
     display: block;
     width: max-content;
     margin-right: auto;

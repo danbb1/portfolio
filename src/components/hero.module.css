@@ -31,13 +31,23 @@
 }
 
 .canvas-button {
+    all: unset;
     display: flex;
+    width: max-content;
+    padding: 0.5rem 2rem;
     border: 0.2rem solid white;
     background-color: transparent;
+    border-radius: 0.25rem;
     color: #ffffff;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out; 
+
+    &:after {
+        display: none !important;
+    }
 
     & > svg {
-        margin: 1px 0 0 5px;
+        margin: 1px 0 0 10px;
         animation: bounce 2s infinite ease-in-out;
     }
 

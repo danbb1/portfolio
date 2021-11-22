@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react"
+import { Link } from "gatsby"
 import { AiOutlineArrowDown } from "react-icons/ai"
-import scrollToElement from "scroll-to-element"
 import PropTypes from "prop-types"
 
 import {
@@ -118,7 +118,7 @@ const Canvas = ({ size }) => {
   )
 }
 
-const Hero = ({ projectsRef }) => {
+const Hero = () => {
   const ref = useRef()
 
   const { elSize: canvasSize } = useWindowSize(ref)
@@ -133,18 +133,9 @@ const Hero = ({ projectsRef }) => {
           <span>I&apos;m Dan Bridges</span>
           <span>A web developer</span>
         </h1>
-        <button
-          className={canvasButton}
-          type="button"
-          onClick={() =>
-            scrollToElement(projectsRef, {
-              ease: "linear",
-              duration: 1000,
-            })
-          }
-        >
+        <Link className={canvasButton} to="/#projects-anchor">
           <span>See For Yourself</span> <AiOutlineArrowDown />
-        </button>
+        </Link>
       </div>
     </div>
   )
