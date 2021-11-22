@@ -26,9 +26,11 @@ const ProjectStatus = ({ status }) => (
 )
 
 const Project = ({ children, frontmatter, index }) => {
+  const [translateDistance, setTransLateDistance] = useState({
+    x: index % 2 ? 0 : `-100%`,
+    y: Math.ceil(index / 2) * -100,
+  })
   const [hasBeenVisible, setHasBeenVisible] = useState(false)
-  const translateXDistance = index % 2 ? 0 : `-100%`
-  const translateYDistance = Math.ceil(index / 2) * -100
 
   const ref = useRef()
 
@@ -39,7 +41,13 @@ const Project = ({ children, frontmatter, index }) => {
   useEffect(() => {
     if (hasBeenVisible) return
 
-    if (isVisible) setHasBeenVisible(true)
+    if (isVisible) {
+      setHasBeenVisible(true)
+      setTransLateDistance({
+        x: 0,
+        y: 0,
+      })
+    }
   }, [isVisible])
 
   return (
@@ -47,13 +55,9 @@ const Project = ({ children, frontmatter, index }) => {
       ref={ref}
       style={{
         transform: `translateX(${
-          windowSize.windowWidth >= 1024 && !isVisible && !hasBeenVisible
-            ? translateXDistance
-            : 0
+          windowSize.windowWidth >= 1024 ? translateDistance.x : 0
         }) translateY(${
-          windowSize.windowWidth >= 1024 && !isVisible && !hasBeenVisible
-            ? translateYDistance
-            : 0
+          windowSize.windowWidth >= 1024 ? translateDistance.y : 0
         }%)`,
       }}
       className={projectStyle}
@@ -100,4 +104,5 @@ ProjectStatus.propTypes = {
 Project.propTypes = {
   children: PropTypes.node.isRequired,
   frontmatter: PropTypes.shape(frontmatterShape).isRequired,
+  index: PropTypes.number.isRequired,
 }

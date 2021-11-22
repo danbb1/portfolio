@@ -3,24 +3,26 @@ import { useState, useEffect } from "react"
 const useIsVisible = (ref, rootMargin = "0px") => {
   const windowGlobal = typeof window !== "undefined"
 
-  if (windowGlobal) {
-    const [isIntersecting, setIsIntersecting] = useState(false)
+  const [isIntersecting, setIsIntersecting] = useState(false)
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsIntersecting(entry.isIntersecting),
-      { rootMargin }
-    )
+  let observer
 
-    useEffect(() => {
+  useEffect(() => {
+    if (windowGlobal && ref.current) {
+      observer = new IntersectionObserver(
+        ([entry]) => setIsIntersecting(entry.isIntersecting),
+        { rootMargin }
+      )
       observer.observe(ref.current)
 
       return () => {
         observer.disconnect()
       }
-    }, [])
+    }
+    return null
+  }, [])
 
-    return isIntersecting
-  }
+  return isIntersecting
 }
 
 export default useIsVisible

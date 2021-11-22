@@ -11,7 +11,6 @@ import { projectWrapper, homeLink } from "./templates/project.module.css"
 
 const About = ({ data }) => (
   <Layout>
-    {console.log(data)}
     <SEO title="About" />
     <div className={projectWrapper}>
       <Link to="/" className={homeLink}>

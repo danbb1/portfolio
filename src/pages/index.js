@@ -162,6 +162,7 @@ Projects.propTypes = {
       }),
     })
   ).isRequired,
+  id: PropTypes.string.isRequired,
 }
 
 IndexPage.propTypes = {

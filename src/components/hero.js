@@ -154,13 +154,6 @@ Canvas.defaultProps = {
   size: {},
 }
 
-Hero.propTypes = {
-  projectsRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({ current: PropTypes.node }),
-  ]),
-}
-
 Hero.defaultProps = {
   projectsRef: undefined,
 }
