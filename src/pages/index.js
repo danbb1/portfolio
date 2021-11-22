@@ -24,45 +24,37 @@ import {
 } from "./index.module.css"
 import useIsVisible from "../utils/useIsVisible"
 
-const Projects = React.forwardRef((props, ref) => {
-  const { projects, id, isVisible } = props
-
-  return (
-    <div ref={ref} id={id} className={projectsWrapper}>
-      <div>
-        <div className={projectsHeadingContainer}>
-          <h2 className={projectsHeading}>Projects</h2>
-          <p className={projectsSubheading}>
-            Some of the the things I have built
-          </p>
-        </div>
+const Projects = ({ projects, id }) => (
+  <div id={id} className={projectsWrapper}>
+    <div>
+      <div className={projectsHeadingContainer}>
+        <h2 className={projectsHeading}>Projects</h2>
+        <p className={projectsSubheading}>
+          Some of the the things I have built
+        </p>
       </div>
-
-      {projects.map((project, index) => (
-        <Project
-          key={project.node.frontmatter.heading}
-          frontmatter={project.node.frontmatter}
-          index={index}
-          isVisible={isVisible}
-        >
-          <GatsbyImage
-            image={getImage(project.node.frontmatter.image)}
-            layout="fullWidth"
-            quality={95}
-            placeholder="blurred"
-            formats={["AUTO", "WEBP", "AVIF"]}
-            alt="Dan Bridges web developer"
-          />
-        </Project>
-      ))}
     </div>
-  )
-})
+
+    {projects.map((project, index) => (
+      <Project
+        key={project.node.frontmatter.heading}
+        frontmatter={project.node.frontmatter}
+        index={index}
+      >
+        <GatsbyImage
+          image={getImage(project.node.frontmatter.image)}
+          layout="fullWidth"
+          quality={95}
+          placeholder="blurred"
+          formats={["AUTO", "WEBP", "AVIF"]}
+          alt="Dan Bridges web developer"
+        />
+      </Project>
+    ))}
+  </div>
+)
 
 const IndexPage = ({ data }) => {
-  const ref = useRef()
-  const isVisible = useIsVisible(ref, "-200px")
-
   const projects = data
     ? [
         ...data.Production.edges,
@@ -101,12 +93,7 @@ const IndexPage = ({ data }) => {
           </a>
         </div>
       </Section>
-      <Projects
-        projects={projects}
-        id="projects-anchor"
-        ref={ref}
-        isVisible={isVisible}
-      />
+      <Projects projects={projects} id="projects-anchor" />
     </Layout>
   )
 }

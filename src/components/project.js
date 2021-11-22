@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 
 import useWindowSize from "../utils/useWindowSize"
+import useIsVisible from "../utils/useIsVisible"
 
 import {
   caseStudyLink,
@@ -24,12 +25,16 @@ const ProjectStatus = ({ status }) => (
   </span>
 )
 
-const Project = ({ children, frontmatter, index, isVisible }) => {
+const Project = ({ children, frontmatter, index }) => {
   const [hasBeenVisible, setHasBeenVisible] = useState(false)
   const translateXDistance = index % 2 ? 0 : `-100%`
   const translateYDistance = Math.ceil(index / 2) * -100
 
+  const ref = useRef()
+
   const { windowSize } = useWindowSize()
+
+  const isVisible = useIsVisible(ref, "-200px")
 
   useEffect(() => {
     if (hasBeenVisible) return
@@ -39,6 +44,7 @@ const Project = ({ children, frontmatter, index, isVisible }) => {
 
   return (
     <div
+      ref={ref}
       style={{
         transform: `translateX(${
           windowSize.windowWidth >= 1024 && !isVisible && !hasBeenVisible

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-const useIsVisible = (ref, rootMargin = 0) => {
+const useIsVisible = (ref, rootMargin = "0px") => {
   const [isIntersecting, setIsIntersecting] = useState(false)
 
   const observer = new IntersectionObserver(
