@@ -2,8 +2,6 @@
 heading: "Slomo Casino"
 image: "../../images/slomocasino.jpg"
 link: "https://www.slomocasino.com"
-description: "Band website including sign up form with field validation and MailChimp integration."
-inclusions: ["Static site with serverless functions", "Hosted on Netlify", "Built with Gatsby, Tailwind and Netlify Functions", "Integrated with Stripe, WeScanTickets, MailChimp and Netlify CMS"]
 status: "Production"
 ---
 import VideoJSPlayer from "../../components/videoJsPlayer.js"
@@ -16,6 +14,14 @@ import ProductsVideo from "../../images/products.webm"
 #### Web Design and Development
 
 [wwww.slomocasino.com](https://www.slomocasino.com)
+
+*TLDR:*
+- Static site with serverless functions
+- Hosted on Netlify
+- Built with Gatsby
+- Styled with Tailwind
+- Integrated with Stripe, WeScanTickets and MailChimp
+- Content managed with netlify CMS
 
 Slomo Casino are a recently founded band from Stockport and I was tasked with building their website from scratch. The brief was to create a site that acted a hub for their online presence with links to social media and music platforms, advertising band activity such as upcoming shows and new releases, and online merchandise sales.
 
@@ -39,10 +45,11 @@ The ease of integrating Snipcart into the site was evident once it had to replac
 
 Once Stripe Checkout was chosen to handle merch sales, products were created in Stripe's dashboard and sourced at build time, with the data passed to the components created for Snipcart.
 
-Netlify CMS was integrated to manage some of the site's data, such as:
+Netlify CMS was integrated to manage some of the site's frequently updated data, such as:
 - Upcoming shows, ticket sales links and ticket availability
 - Social links and the Spotify playlist embed
 - YouTube embed links for the slot machine
 - Product images and variations
+- Homepage banners
 
 With Netlify's automatic builds and the Git-based CMS, site rebuilds are triggered whenever an update is made in the back end with the new site pushed live automatically.

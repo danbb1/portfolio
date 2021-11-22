@@ -4,8 +4,8 @@
     position: relative;
     width: 15rem;
     height: max-content;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
 
     &:before {
         position: absolute;
@@ -16,12 +16,6 @@
         height: 100%;
         border: solid 0.5rem var(--secondary);
         content: "";
-    }
-
-    @media screen and (--md) {
-        margin-left: auto;
-        margin-right: 0;
-        transform: translateY(-25%);
     }
 
     @media screen and (--lg) {
@@ -46,13 +40,9 @@
         }
 
         & > *:first-child {
-            align-self: center;
-            padding: 0.5rem 0 0.5rem 0.5rem;
-            border-left: solid 0.5rem var(--secondary);
-            margin-left: -0.5rem;
-            justify-self: center;
+            @extend %flex-center;
             z-index: 1;
-            background-color: var(--primary);
+            background-color: var(--secondary);
         }
 
         & > *:nth-child(odd) {
@@ -66,6 +56,7 @@
 }
 
 .intro-container {
+    position: relative;
     padding: 2rem 3rem;
     @media screen and (--md) {
         @supports (display: flex) {
@@ -74,18 +65,18 @@
             }
         }
         display: flex;
-        flex-direction: row-reverse;
-        padding-top: 0;
-        padding-bottom: 0;
+        padding-top: 4rem;
+        padding-bottom: 2rem;
 
         & > *:first-child {
-            margin: 0 auto;
+            position: absolute;
+            right: 25vw;
+            bottom: 2rem;
+            transform: translateX(50%);
         }
 
         & > *:nth-child(2) {
             width: 50%;
-            margin-top: 5rem;
-            margin-bottom: 3rem;
         }
     }
 }
@@ -104,22 +95,29 @@
 
 .projects-heading-container {
     @extend %flow;
-    text-align: center;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    border-left: solid 0.5rem var(--primary);
     margin-bottom: var(--flow-space);
+    margin-left: -0.5rem;
+    text-align: center;
 }
 
 .projects-heading {
     font-size: var(--700);
     text-align: center;
 
-    @media screen and (--lg) {
-        font-size: var(--900);
-        text-align: left;
-    }
-
     &:after {
         color: var(--secondary);
         content: ".";
+    }
+
+    @media screen and (--lg) {
+        font-size: var(--900);
+        text-align: left;
+
+        &:after {
+            color: var(--primary);
+        }
     }
 }
 

@@ -13,7 +13,6 @@ import CV from "../data/cv.pdf"
 
 import {
   link,
-  headshot,
   headshotWrapper,
   introContainer,
   introText,
@@ -30,12 +29,15 @@ const Projects = React.forwardRef((props, ref) => {
 
   return (
     <div ref={ref} id={id} className={projectsWrapper}>
-      <div className={projectsHeadingContainer}>
-        <h2 className={projectsHeading}>Projects</h2>
-        <p className={projectsSubheading}>
-          Some of the the things I have built
-        </p>
+      <div>
+        <div className={projectsHeadingContainer}>
+          <h2 className={projectsHeading}>Projects</h2>
+          <p className={projectsSubheading}>
+            Some of the the things I have built
+          </p>
+        </div>
       </div>
+
       {projects.map((project, index) => (
         <Project
           key={project.node.frontmatter.heading}
@@ -75,7 +77,6 @@ const IndexPage = ({ data }) => {
       <Section className={introContainer}>
         <div className={headshotWrapper}>
           <StaticImage
-            className={headshot}
             src="../images/headshotbw.jpg"
             width={300}
             layout="constrained"
@@ -117,8 +118,6 @@ export const query = graphql`
     body
     frontmatter {
       status
-      description
-      inclusions
       link
       heading
       title
