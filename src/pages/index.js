@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image"
 import { graphql, Link } from "gatsby"
 import { AiOutlineFilePdf } from "react-icons/ai"
@@ -22,7 +22,6 @@ import {
   projectsHeadingContainer,
   introTextContainer,
 } from "./index.module.css"
-import useIsVisible from "../utils/useIsVisible"
 
 const Projects = ({ projects, id }) => (
   <div id={id} className={projectsWrapper}>
