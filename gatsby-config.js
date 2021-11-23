@@ -6,6 +6,7 @@ module.exports = {
     description: `Web developer portfolio for Dan Bridges.`,
     author: `Dan Bridges`,
     siteUrl: `https://danbridges.co.uk`,
+    image: `${__dirname}/static/headshotbw.jpg`,
   },
   plugins: [
     {
