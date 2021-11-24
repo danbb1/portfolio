@@ -1,5 +1,5 @@
 import React from "react"
-import { AiOutlineGithub, AiOutlineMail } from "react-icons/ai"
+import { AiFillGithub, AiOutlineMail, AiOutlineLinkedin } from "react-icons/ai"
 import PropTypes from "prop-types"
 
 import "../style/reset.css"
@@ -16,15 +16,19 @@ const Layout = ({ children, index }) => (
       <main className={mainWrapper}>{children}</main>
       <footer>
         <div className={linksWrapper}>
+          <a
+            className={iconLink}
+            href="https://www.linkedin.com/in/daniel-bridges-646350106"
+          >
+            <AiOutlineLinkedin />
+          </a>
           <a className={iconLink} href="https://www.github.com/danbb1/">
-            <AiOutlineGithub /> @danbb1
+            <AiFillGithub />
           </a>
           <a href="mailto:hello@danbridges.co.uk" className={iconLink}>
             <AiOutlineMail />
-            hello@danbridges.co.uk
           </a>
         </div>
-
         <span>
           © {new Date().getFullYear()}, Built with
           {` `}
