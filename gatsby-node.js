@@ -23,22 +23,22 @@ exports.createPages = async function ({ actions, graphql }) {
         }
       }
     }
-  `)
+  `);
 
   data.allFile.edges.forEach(edge => {
     const path = edge.node.childMdx.frontmatter.heading
       .toLowerCase()
-      .replace(/ /g, "-")
-      .replace(/[^\w-]+/g, "")
+      .replace(/ /g, '-')
+      .replace(/[^\w-]+/g, '');
 
-    console.log("Createing page", path)
+    console.log('Createing page', path);
 
     actions.createPage({
       path: `/projects/${path}`,
-      component: require.resolve("./src/pages/templates/project.js"),
+      component: require.resolve('./src/pages/templates/project.js'),
       context: { heading: edge.node.childMdx.frontmatter.heading },
-    })
+    });
 
-    console.log("Success")
-  })
-}
+    console.log('Success');
+  });
+};

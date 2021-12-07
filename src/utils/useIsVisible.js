@@ -1,28 +1,25 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react';
 
-const useIsVisible = (ref, rootMargin = "0px") => {
-  const windowGlobal = typeof window !== "undefined"
+const useIsVisible = (ref, rootMargin = '0px') => {
+  const windowGlobal = typeof window !== 'undefined';
 
-  const [isIntersecting, setIsIntersecting] = useState(false)
+  const [isIntersecting, setIsIntersecting] = useState(false);
 
-  let observer
+  let observer;
 
   useEffect(() => {
     if (windowGlobal && ref.current) {
-      observer = new IntersectionObserver(
-        ([entry]) => setIsIntersecting(entry.isIntersecting),
-        { rootMargin }
-      )
-      observer.observe(ref.current)
+      observer = new IntersectionObserver(([entry]) => setIsIntersecting(entry.isIntersecting), { rootMargin });
+      observer.observe(ref.current);
 
       return () => {
-        observer.disconnect()
-      }
+        observer.disconnect();
+      };
     }
-    return null
-  }, [])
+    return null;
+  }, []);
 
-  return isIntersecting
-}
+  return isIntersecting;
+};
 
-export default useIsVisible
+export default useIsVisible;

@@ -1,13 +1,13 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import { MDXRenderer } from "gatsby-plugin-mdx"
-import { AiOutlineArrowLeft } from "react-icons/ai"
-import PropTypes from "prop-types"
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from '../components/layout';
+import SEO from '../components/seo';
 
-import { projectWrapper, homeLink } from "./templates/project.module.css"
+import { projectWrapper, homeLink } from './templates/project.module.css';
 
 const About = ({ data }) => (
   <Layout>
@@ -20,9 +20,9 @@ const About = ({ data }) => (
       <MDXRenderer>{data.file.childMdx.body}</MDXRenderer>
     </div>
   </Layout>
-)
+);
 
-export default About
+export default About;
 
 export const query = graphql`
   query {
@@ -32,7 +32,7 @@ export const query = graphql`
       }
     }
   }
-`
+`;
 
 About.propTypes = {
   data: PropTypes.shape({
@@ -42,4 +42,4 @@ About.propTypes = {
       }),
     }),
   }).isRequired,
-}
+};

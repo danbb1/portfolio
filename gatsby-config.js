@@ -13,9 +13,9 @@ module.exports = {
       resolve: `gatsby-plugin-bundle-stats`,
       options: {
         compare: true,
-        outDir: "../artifacts",
+        outDir: '../artifacts',
         stats: {
-          context: "./src",
+          context: './src',
         },
       },
     },
@@ -31,11 +31,11 @@ module.exports = {
       resolve: `gatsby-plugin-postcss`,
       options: {
         postCssPlugins: [
-          require("postcss-import")(),
-          require("postcss-nesting")(),
-          require("postcss-extend-rule")(),
-          require("postcss-custom-media")(),
-          require("autoprefixer")(),
+          require('postcss-import')(),
+          require('postcss-nesting')(),
+          require('postcss-extend-rule')(),
+          require('postcss-custom-media')(),
+          require('autoprefixer')(),
         ],
       },
     },
@@ -56,4 +56,4 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
   ],
-}
+};
