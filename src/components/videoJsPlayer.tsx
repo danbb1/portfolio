@@ -1,14 +1,13 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import React, { useRef, useEffect, useState } from 'react';
-import videojs from 'video.js';
+import videojs, { VideoJsPlayer } from 'video.js';
 import 'video.js/dist/video-js.css';
-import PropTypes from 'prop-types';
 
 import { vjsWrapper, portrait as portraitStyle } from './videoJSPlayer.module.css';
 
-const useVideoPlayer = ({ source }) => {
-  const [player, setPlayer] = useState(null);
-  const videoPlayerRef = useRef(null);
+const useVideoPlayer = ({ source }: { source: string }) => {
+  const [player, setPlayer] = useState<VideoJsPlayer | null>(null);
+  const videoPlayerRef = useRef<HTMLVideoElement>(null);
 
   const videoJSOptions = {
     fill: true,
@@ -20,9 +19,10 @@ const useVideoPlayer = ({ source }) => {
   };
 
   useEffect(() => {
+    if (!videoPlayerRef.current) return () => {};
     const videojsplayer = videojs(videoPlayerRef.current, {
       ...videoJSOptions,
-      sources: [source],
+      sources: [{ src: source, type: 'video/mp4' }],
     });
     setPlayer(videojsplayer);
 
@@ -36,7 +36,7 @@ const useVideoPlayer = ({ source }) => {
   return videoPlayerRef;
 };
 
-const VideoJSPlayer = ({ portrait, source }) => {
+const VideoJSPlayer = ({ portrait = false, source }: { portrait: boolean; source: string }) => {
   const playerRef = useVideoPlayer({ source });
 
   return (
@@ -49,12 +49,3 @@ const VideoJSPlayer = ({ portrait, source }) => {
 };
 
 export default VideoJSPlayer;
-
-VideoJSPlayer.propTypes = {
-  portrait: PropTypes.bool,
-  source: PropTypes.string.isRequired,
-};
-
-VideoJSPlayer.defaultProps = {
-  portrait: false,
-};

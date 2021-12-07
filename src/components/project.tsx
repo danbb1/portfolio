@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'gatsby';
-import PropTypes from 'prop-types';
 
 import useWindowSize from '../utils/useWindowSize';
 import useIsVisible from '../utils/useIsVisible';
@@ -15,7 +14,9 @@ import {
   projectStatus,
 } from './project.module.css';
 
-const ProjectStatus = ({ status }) => (
+type ProjectStatusType = 'Development' | 'Production' | 'Just for Fun';
+
+const ProjectStatus = ({ status }: { status: ProjectStatusType }) => (
   <span
     className={`${projectStatus} ${status === 'Development' && developmentStyle} ${
       status === 'Production' && productionStyle
@@ -25,14 +26,26 @@ const ProjectStatus = ({ status }) => (
   </span>
 );
 
-const Project = ({ children, frontmatter, index }) => {
+type FrontMatter = {
+  heading: string;
+  images: string;
+  link: string;
+  status: ProjectStatusType;
+};
+
+type Props = {
+  frontmatter: FrontMatter;
+  index: number;
+};
+
+const Project: React.FC<Props> = ({ children, frontmatter, index }) => {
   const [translateDistance, setTransLateDistance] = useState({
     x: index % 2 ? 0 : `-100%`,
     y: Math.ceil(index / 2) * -100,
   });
   const [hasBeenVisible, setHasBeenVisible] = useState(false);
 
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   const { windowSize } = useWindowSize();
 
@@ -82,20 +95,3 @@ const Project = ({ children, frontmatter, index }) => {
 };
 
 export default Project;
-
-const frontmatterShape = {
-  heading: PropTypes.string,
-  description: PropTypes.string,
-  inclusions: PropTypes.arrayOf(PropTypes.string),
-  link: PropTypes.string,
-};
-
-ProjectStatus.propTypes = {
-  status: PropTypes.string.isRequired,
-};
-
-Project.propTypes = {
-  children: PropTypes.node.isRequired,
-  frontmatter: PropTypes.shape(frontmatterShape).isRequired,
-  index: PropTypes.number.isRequired,
-};

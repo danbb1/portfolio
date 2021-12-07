@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { Link } from 'gatsby';
 import { AiOutlineArrowDown } from 'react-icons/ai';
-import PropTypes from 'prop-types';
 
 import {
   canvasButton,
@@ -17,16 +16,10 @@ import Triangle from './shapeClasses/Triangle';
 import Square from './shapeClasses/Square';
 import useWindowSize from '../utils/useWindowSize';
 
-const Canvas = ({ size }) => {
-  const canvasRef = useRef();
+const Canvas = ({ size }: { size: { width: number; height: number } }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const strokeColors = {
-    0: '#D64933',
-    1: '#99E1D9',
-    2: '#D7F75B',
-  };
-
-  const draw = (context, shapes) => {
+  const draw = (context: CanvasRenderingContext2D, shapes: (Square | Circle | Triangle)[]) => {
     context.clearRect(0, 0, size?.width, size?.height);
 
     shapes.forEach(shape => {
@@ -36,20 +29,17 @@ const Canvas = ({ size }) => {
   };
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-    let animationFrameId;
+    if (!canvasRef.current) return () => {};
+    const canvas: HTMLCanvasElement = canvasRef.current;
+    const context: CanvasRenderingContext2D | null = canvas.getContext('2d');
+    let animationFrameId: number;
 
-    if (!context) return;
+    if (!context) return () => {};
 
-    const shapes = [];
+    const shapes: (Square | Circle | Triangle)[] = [];
 
     for (let i = 0; i < 5; i += 1) {
-      shapes.push(
-        new Circle(context, strokeColors[Math.floor(Math.random() * 3)]),
-        new Triangle(context, strokeColors[Math.floor(Math.random() * 3)]),
-        new Square(context, strokeColors[Math.floor(Math.random() * 3)]),
-      );
+      shapes.push(new Circle(context), new Triangle(context), new Square(context));
     }
 
     const render = () => {
@@ -68,13 +58,13 @@ const Canvas = ({ size }) => {
 };
 
 const Hero = () => {
-  const ref = useRef();
+  const ref = useRef<HTMLDivElement>(null);
 
   const { elSize: canvasSize } = useWindowSize(ref);
 
   return (
     <div ref={ref} className={container}>
-      <Canvas size={canvasSize} />
+      {canvasSize && <Canvas size={canvasSize} />}
       <div className={canvasMask} />
       <div className={headingContainer}>
         <h1 className={heading}>
@@ -91,18 +81,3 @@ const Hero = () => {
 };
 
 export default Hero;
-
-Canvas.propTypes = {
-  size: PropTypes.shape({
-    height: PropTypes.number,
-    width: PropTypes.number,
-  }),
-};
-
-Canvas.defaultProps = {
-  size: {},
-};
-
-Hero.defaultProps = {
-  projectsRef: undefined,
-};

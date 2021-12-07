@@ -2,14 +2,13 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import PropTypes from 'prop-types';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 import { projectWrapper, homeLink } from './templates/project.module.css';
 
-const About = ({ data }) => (
+const About = ({ data }: { data: Query }) => (
   <Layout>
     <SEO title="About" />
     <div className={projectWrapper}>
@@ -24,6 +23,14 @@ const About = ({ data }) => (
 
 export default About;
 
+type Query = {
+  file: {
+    childMdx: {
+      body: string;
+    };
+  };
+};
+
 export const query = graphql`
   query {
     file(relativePath: { eq: "about.mdx" }) {
@@ -33,13 +40,3 @@ export const query = graphql`
     }
   }
 `;
-
-About.propTypes = {
-  data: PropTypes.shape({
-    file: PropTypes.shape({
-      childMdx: PropTypes.shape({
-        body: PropTypes.string.isRequired,
-      }),
-    }),
-  }).isRequired,
-};

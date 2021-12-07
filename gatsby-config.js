@@ -19,6 +19,7 @@ module.exports = {
         },
       },
     },
+    'gatsby-transformer-typescript-css-modules',
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {

@@ -1,6 +1,6 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
 import { AiFillGithub, AiOutlineMail, AiOutlineLinkedin } from 'react-icons/ai';
-import PropTypes from 'prop-types';
 
 import '../style/reset.css';
 import '@fontsource/ubuntu';
@@ -9,7 +9,11 @@ import Hero from './hero';
 
 import { iconLink, linksWrapper, mainWrapper } from './layout.module.css';
 
-const Layout = ({ children, index }) => (
+type Props = {
+  index?: boolean;
+};
+
+const Layout: React.FC<Props> = ({ children, index = false }) => (
   <>
     <div>
       {index && <Hero />}
@@ -35,14 +39,5 @@ const Layout = ({ children, index }) => (
     </div>
   </>
 );
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  index: PropTypes.bool,
-};
-
-Layout.defaultProps = {
-  index: false,
-};
 
 export default Layout;
