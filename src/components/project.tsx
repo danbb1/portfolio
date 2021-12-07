@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 
 import useWindowSize from '../utils/useWindowSize';
@@ -26,15 +27,16 @@ const ProjectStatus = ({ status }: { status: ProjectStatusType }) => (
   </span>
 );
 
-type FrontMatter = {
-  heading: string;
-  images: string;
+type FrontmatterType = {
+  status: 'Production' | 'Just for Fun' | 'Development';
   link: string;
-  status: ProjectStatusType;
+  heading: string;
+  title: string;
+  image: IGatsbyImageData;
 };
 
 type Props = {
-  frontmatter: FrontMatter;
+  frontmatter: FrontmatterType;
   index: number;
 };
 
@@ -67,8 +69,8 @@ const Project: React.FC<Props> = ({ children, frontmatter, index }) => {
     <div
       ref={ref}
       style={{
-        transform: `translateX(${windowSize.windowWidth >= 1024 ? translateDistance.x : 0}) translateY(${
-          windowSize.windowWidth >= 1024 ? translateDistance.y : 0
+        transform: `translateX(${windowSize && windowSize.windowWidth >= 1024 ? translateDistance.x : 0}) translateY(${
+          windowSize && windowSize.windowWidth >= 1024 ? translateDistance.y : 0
         }%)`,
       }}
       className={projectStyle}

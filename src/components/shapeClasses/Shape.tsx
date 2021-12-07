@@ -38,7 +38,6 @@ abstract class Shape {
     this.x = this.getRandomPoint(this.ctx.canvas.width);
     this.y = this.getRandomPoint(this.ctx.canvas.height);
     this.strokeStyle = getRandomEnumVal(StrokeStyle);
-    console.log(this.strokeStyle);
     this.lineWidth = 4;
     this.velocityX = this.getRandomVel(3);
     this.velocityY = this.getRandomVel(3);

@@ -2,17 +2,16 @@ import { useCallback, useState, useEffect, RefObject } from 'react';
 import { debounce } from 'lodash';
 
 type WindowState = {
-  windowWidth: number | undefined;
-  windowHeight: number | undefined;
+  windowWidth: number;
+  windowHeight: number;
 };
 
-const useWindowSize = (ref: RefObject<HTMLElement>) => {
+const useWindowSize = (ref: RefObject<HTMLElement> | null = null) => {
   const windowGlobal = typeof window !== 'undefined';
 
-  const [windowSize, setWindowSize] = useState<WindowState>({
-    windowWidth: windowGlobal ? window.innerWidth : undefined,
-    windowHeight: windowGlobal ? window.innerHeight : undefined,
-  });
+  const [windowSize, setWindowSize] = useState<WindowState | null>(
+    windowGlobal ? { windowWidth: window.innerWidth, windowHeight: window.innerHeight } : null,
+  );
   const [elSize, setElSize] = useState<{ width: number; height: number } | null>(null);
 
   const handleResize = () => {

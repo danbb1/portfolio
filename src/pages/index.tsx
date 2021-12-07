@@ -1,8 +1,7 @@
 import React from 'react';
-import { StaticImage, GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { StaticImage, GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { graphql, Link } from 'gatsby';
 import { AiOutlineFilePdf } from 'react-icons/ai';
-import PropTypes from 'prop-types';
 
 import Layout from '../components/layout';
 import Seo from '../components/seo';
@@ -23,31 +22,27 @@ import {
   introTextContainer,
 } from './index.module.css';
 
-const Projects = ({ projects, id }) => (
-  <div id={id} className={projectsWrapper}>
+const Projects = ({ projects }: { projects: ProjectType[] }) => (
+  <div id="projects-anchor" className={projectsWrapper}>
     <div>
       <div className={projectsHeadingContainer}>
         <h2 className={projectsHeading}>Projects</h2>
         <p className={projectsSubheading}>Some of the the things I have built</p>
       </div>
     </div>
+    {projects.map((project, index) => {
+      const image = getImage(project.node.frontmatter.image);
 
-    {projects.map((project, index) => (
-      <Project key={project.node.frontmatter.heading} frontmatter={project.node.frontmatter} index={index}>
-        <GatsbyImage
-          image={getImage(project.node.frontmatter.image)}
-          layout="fullWidth"
-          quality={95}
-          placeholder="blurred"
-          formats={['AUTO', 'WEBP', 'AVIF']}
-          alt="Dan Bridges web developer"
-        />
-      </Project>
-    ))}
+      return (
+        <Project key={project.node.frontmatter.heading} frontmatter={project.node.frontmatter} index={index}>
+          {image && <GatsbyImage image={image} alt="Dan Bridges web developer" />}
+        </Project>
+      );
+    })}
   </div>
 );
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data }: { data: Query }) => {
   const projects = data ? [...data.Production.edges, ...data.Development.edges, ...data.JustForFun.edges] : null;
 
   return (
@@ -62,7 +57,7 @@ const IndexPage = ({ data }) => {
             objectFit="scale-down"
             quality={95}
             placeholder="blurred"
-            formats={['AUTO', 'WEBP', 'AVIF']}
+            formats={['auto', 'webp', 'avif']}
             alt="Dan Bridges web developer"
           />
         </div>
@@ -80,12 +75,39 @@ const IndexPage = ({ data }) => {
           </a>
         </div>
       </Section>
-      <Projects projects={projects} id="projects-anchor" />
+      {projects && <Projects projects={projects} />}
     </Layout>
   );
 };
 
 export default IndexPage;
+
+type FrontmattterType = {
+  status: 'Production' | 'Just for Fun' | 'Development';
+  link: string;
+  heading: string;
+  title: string;
+  image: IGatsbyImageData;
+};
+
+type ProjectType = {
+  node: {
+    body: string;
+    frontmatter: FrontmattterType;
+  };
+};
+
+type Query = {
+  Production: {
+    edges: ProjectType[];
+  };
+  Development: {
+    edges: ProjectType[];
+  };
+  JustForFun: {
+    edges: ProjectType[];
+  };
+};
 
 export const query = graphql`
   fragment projectInfo on Mdx {
@@ -97,7 +119,7 @@ export const query = graphql`
       title
       image {
         childImageSharp {
-          gatsbyImageData(quality: 95)
+          gatsbyImageData(quality: 95, layout: FULL_WIDTH, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])
         }
       }
     }
@@ -126,41 +148,3 @@ export const query = graphql`
     }
   }
 `;
-
-const frontmatterShape = {
-  heading: PropTypes.string,
-  description: PropTypes.string,
-  inclusions: PropTypes.arrayOf(PropTypes.string),
-  link: PropTypes.string,
-  image: PropTypes.shape({}).isRequired,
-};
-
-Projects.propTypes = {
-  projects: PropTypes.arrayOf(
-    PropTypes.shape({
-      node: PropTypes.shape({
-        body: PropTypes.string.isRequired,
-        frontmatter: PropTypes.shape(frontmatterShape),
-      }),
-    }),
-  ).isRequired,
-  id: PropTypes.string.isRequired,
-};
-
-IndexPage.propTypes = {
-  data: PropTypes.shape({
-    Production: PropTypes.shape({
-      edges: PropTypes.arrayOf(PropTypes.shape({})),
-    }),
-    Development: PropTypes.shape({
-      edges: PropTypes.arrayOf(PropTypes.shape({})),
-    }),
-    JustForFun: PropTypes.shape({
-      edges: PropTypes.arrayOf(PropTypes.shape({})),
-    }),
-  }),
-};
-
-IndexPage.defaultProps = {
-  data: {},
-};
