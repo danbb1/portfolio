@@ -23,7 +23,6 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.tsx', '.ts'] }],
     'prettier/prettier': 'error',
-    // '@typescript-eslint/interface-name-prefix': ['error', { prefixWithI: 'always' }],
     'react/prop-types': 'off',
     '@typescript-eslint/ban-ts-ignore': 'off',
   },
