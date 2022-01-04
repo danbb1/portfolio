@@ -1,0 +1,27 @@
+---
+heading: "Pub Walks"
+image: "../../images/pub-walks.jpg"
+link: "https://nifty-nightingale-710f41.netlify.app/"
+status: "Just for Fun"
+---
+# Pub Walks
+
+[https://nifty-nightingale-710f41.netlify.app/](https://nifty-nightingale-710f41.netlify.app/)
+
+*TLDR:*
+- Built with Gatsby
+- Netlify Functions
+- MongoDB
+- Redux Toolkit
+- Leaflet JS
+- Tailwind CSS
+
+Pub Walks is a mapping app that can be used to explore outdoor routes and see nearby pubs.
+
+Routes can be plotted via user input or an uploaded GPX file. They are stored on a MongoDB Atlas cluster.
+
+The pubs data came from a [https://www.getthedata.com/open-pubs](https://www.getthedata.com/open-pubs), representing 50,000+ pubs across the UK. I entered these into a local Mongo instance using a NodeJS script for development and testing, before exporting to an Atlas cluster.
+
+Mapping functionality is provided by Leaflet JS and React Leaflet.
+
+State is managed using Redux Toolkit.
