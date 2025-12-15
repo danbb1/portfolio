@@ -70,7 +70,7 @@ const Hero = () => {
         <h1 className={heading}>
           <span>Hello</span>
           <span>I&apos;m Dan Bridges</span>
-          <span>A web developer</span>
+          <span>A software developer</span>
         </h1>
         <Link className={canvasButton} to="/#projects-anchor">
           <span>See For Yourself</span> <AiOutlineArrowDown />

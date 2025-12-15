@@ -1,13 +1,15 @@
 ---
-heading: "Slomo Casino"
-image: "../../images/slomocasino.jpg"
-link: "https://www.slomocasino.com"
-status: "Production"
+heading: 'Slomo Casino'
+image: '../../images/slomocasino.jpg'
+link: 'https://www.slomocasino.com'
+status: 'Production'
+hide: true
 ---
-import VideoJSPlayer from "../../components/videoJsPlayer.tsx"
-import MobileVideo from "../../images/mobileMenu.webm"
-import SlotVideo from "../../images/slotMachine.webm"
-import ProductsVideo from "../../images/products.webm"
+
+import VideoJSPlayer from '../../components/videoJsPlayer.tsx';
+import MobileVideo from '../../images/mobileMenu.webm';
+import SlotVideo from '../../images/slotMachine.webm';
+import ProductsVideo from '../../images/products.webm';
 
 ### Slomo Casino
 
@@ -15,7 +17,8 @@ import ProductsVideo from "../../images/products.webm"
 
 [wwww.slomocasino.com](https://www.slomocasino.com)
 
-*TLDR:*
+_TLDR:_
+
 - Static site with serverless functions
 - Hosted on Netlify
 - Built with Gatsby
@@ -35,7 +38,7 @@ I also developed a novel way of showcasing their videos using a interactive slot
 
 <VideoJSPlayer source={SlotVideo} />
 
-Initially the plan was have a full catalogue of merch available to purchase, so the site was developed to integrate with Snipcart for a full-featured e-commerce solution. However, the amount of merch available was drastically scaled back and so Stripe was deemed suitable to manage the much smaller inventory *(At the time of writing, the merch had not been released and so was not live)*. 
+Initially the plan was have a full catalogue of merch available to purchase, so the site was developed to integrate with Snipcart for a full-featured e-commerce solution. However, the amount of merch available was drastically scaled back and so Stripe was deemed suitable to manage the much smaller inventory _(At the time of writing, the merch had not been released and so was not live)_.
 
 The experience of integrating Snipcart was of great value, despite it ultimately being dropped. Products were added using Netlify CMS, passing their details, including custom options and tiered pricing, to Snipcart's API for an easily extensible and cheap e-commerce solution.
 
@@ -46,6 +49,7 @@ The ease of integrating Snipcart into the site was evident once it had to replac
 Once Stripe Checkout was chosen to handle merch sales, products were created in Stripe's dashboard and sourced at build time, with the data passed to the components created for Snipcart.
 
 Netlify CMS was integrated to manage some of the site's frequently updated data, such as:
+
 - Upcoming shows, ticket sales links and ticket availability
 - Social links and the Spotify playlist embed
 - YouTube embed links for the slot machine
