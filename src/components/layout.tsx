@@ -23,9 +23,9 @@ const Layout: React.FC<Props> = ({ children, index = false }) => (
           <a className={iconLink} href="https://www.linkedin.com/in/daniel-bridges-646350106">
             <AiOutlineLinkedin />
           </a>
-          <a className={iconLink} href="https://www.github.com/danbb1/">
+          {/* <a className={iconLink} href="https://www.github.com/danbb1/">
             <AiFillGithub />
-          </a>
+          </a> */}
           <a href="mailto:hello@danbridges.co.uk" className={iconLink}>
             <AiOutlineMail />
           </a>
