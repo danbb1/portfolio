@@ -14,7 +14,7 @@ const About = ({ data }: { data: Query }) => (
     <div className={projectWrapper}>
       <Link to="/" className={homeLink}>
         <AiOutlineArrowLeft />
-        Back Home
+        Back
       </Link>
       <MDXRenderer>{data.file.childMdx.body}</MDXRenderer>
     </div>

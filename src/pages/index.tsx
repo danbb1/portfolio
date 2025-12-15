@@ -43,7 +43,13 @@ const Projects = ({ projects }: { projects: ProjectType[] }) => (
 );
 
 const IndexPage = ({ data }: { data: Query }) => {
-  const projects = data ? [...data.Production.edges, ...data.Development.edges, ...data.JustForFun.edges] : null;
+  const initialProjects = data ? [...data.Production.edges, ...data.Development.edges, ...data.JustForFun.edges] : null;
+
+  const filteredProjects = initialProjects?.filter(project => !project.node.frontmatter?.hide);
+
+  const projects = filteredProjects?.sort(
+    (a, b) => (a.node.frontmatter?.priority ?? 100) - (b.node.frontmatter?.priority ?? 100),
+  );
 
   return (
     <Layout index>
@@ -51,7 +57,7 @@ const IndexPage = ({ data }: { data: Query }) => {
       <Section className={introContainer}>
         <div className={headshotWrapper}>
           <StaticImage
-            src="../images/headshotbw.jpg"
+            src="../images/resized.jpg"
             width={300}
             layout="constrained"
             objectFit="scale-down"
@@ -63,8 +69,8 @@ const IndexPage = ({ data }: { data: Query }) => {
         </div>
         <div className={introTextContainer}>
           <p className={introText}>
-            I am a self taught web developer based in Stockport skilled in HTML, CSS, JavaScript, React, Gatsby,
-            Serverless Functions.
+            Hi, I’m Dan. I’m a software developer with experience in React, TypeScript, and Node.js. I focus on building
+            fast, efficient web apps and solving problems that make a real impact.
           </p>
           <Link className={link} to="/about/">
             More About Me
@@ -84,10 +90,12 @@ export default IndexPage;
 
 type FrontmattterType = {
   status: 'Production' | 'Just for Fun' | 'Development';
-  link: string;
+  link?: string;
   heading: string;
   title: string;
   image: IGatsbyImageData;
+  hide?: boolean;
+  priority?: number;
 };
 
 type ProjectType = {
@@ -117,6 +125,8 @@ export const query = graphql`
       link
       heading
       title
+      hide
+      priority
       image {
         childImageSharp {
           gatsbyImageData(quality: 95, layout: FULL_WIDTH, placeholder: BLURRED, formats: [AUTO, WEBP, AVIF])

@@ -15,7 +15,7 @@ const Project = ({ data }) => (
     <div className={projectWrapper}>
       <Link to="/" className={homeLink}>
         <AiOutlineArrowLeft />
-        Back Home
+        Back
       </Link>
       <MDXRenderer>{data.mdx.body}</MDXRenderer>
     </div>
